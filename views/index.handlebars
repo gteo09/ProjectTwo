@@ -2,20 +2,19 @@
   <div class="container">
     <div class="row">
       <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
+        {{!-- <h1>{{msg}}</h1> --}}
         <form class="clearfix mb-4" action="POST">
           <div class="form-group">
-            <label for="example-text">Example Text</label>
+            <label for="example-text">Enter your personalized genre here</label>
             <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
           </div>
           <div class="form-group">
-            <label for="example-description">Example Description</label>
+            <label for="example-description">Describe your category</label>
             <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
           </div>
           <button id="submit" class="btn btn-primary float-right">Submit</button>
         </form>
-        <h3>Examples:</h3>
+        <h4>Saved categories</h4>
         <ul id="example-list" class="list-group">
           {{#each examples}}
           <li data-id="{{this.id}}" class="list-group-item">
@@ -24,6 +23,61 @@
           </li>
           {{/each}}
         </ul>
+
+<div class="row selections">
+      <section class="col l12">
+      <div class="col lg3">
+          <img class="img thumbnail center-block movie-poster" src="images/Die.jpg" alt="Action poster">
+          <p class="caption">Action</p>
+          <p class="text-center">
+          <a class="btn btn-primary btn-lg" href="#" role="button">
+          <span class="fa fa-envelope"></span>Action</a>
+          </p>
+        </div>
+        <div class="col lg3">
+          <img class="img thumbnail center-block movie-poster" src="images/Raiders.jpg" alt="Action poster">
+          <p class="caption">Adventure</p>
+          <p class="text-center">
+          <a class="btn btn-primary btn-lg" href="#" role="button">
+          <span class="fa fa-envelope"></span>Adventure</a>
+          </p>
+        </div>
+        <div class="col lg3">
+          <img class="img thumbnail center-block movie-poster" src="images/Nemo.jpg" alt="Comedy poster">
+          <p class="caption">Animation</p>
+          <p class="text-center">
+          <a class="btn btn-primary btn-lg" href="#" role="button">
+          <span class="fa fa-envelope"></span>Animation</a>
+          </p>
+        </div>
+        <div class="col lg3">
+          <img class="img thumbnail center-block movie-poster" src="images/Penguins.jpg" alt="Action poster">
+          <p class="caption">Documentary</p>
+          <p class="text-center">
+          <a class="btn btn-primary btn-lg" href="#" role="button">
+          <span class="fa fa-envelope"></span>Documentary</a>
+          </p>
+        </div>
+        <div class="col lg3">
+            <img class="img thumbnail center-block movie-poster" src="images/Pans Labyrinth.jpg" alt="Action poster">
+            <p class="caption">Fantasy</p>
+            <p class="text-center">
+            <a class="btn btn-primary btn-lg" href="#" role="button">
+            <span class="fa fa-envelope"></span>Fantasy</a>
+            </p>
+          </div>
+          <div class="col lg3">
+            <img class="img thumbnail center-block movie-poster" src="images/Halloween.jpg" alt="Action poster">
+            <p class="caption">Horror</p>
+            <p class="text-center">
+            <a class="btn btn-primary btn-lg" href="#" role="button">
+            <span class="fa fa-envelope"></span>Horror</a>
+            </p>
+          </div>
+      </section>
+      </div>
+
+
       </div>
     </div>
   </div>

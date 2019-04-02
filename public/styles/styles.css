@@ -1,3 +1,42 @@
+body {
+  background-image: url('../images/film-strip.jpg');
+  height: 100%;
+}
+
 .list-group-item {
   line-height: 2.5;
+}
+
+h1, h4 {
+  /* font-family: 'Righteous', cursive; */
+  font-family: 'Anton', sans-serif;
+  color: silver;
+  text-shadow: 2px 2px #161d20;  /* bunker */
+}
+
+.movie-poster {
+  width: 180px;
+  height: 240px;
+  margin-top: 20px;
+}
+
+.container {
+  background: #36498f;  /* chambray */
+  color: white;
+}
+
+.selections {
+  background: #2d7c9d; /* jelly bean */
+}
+
+.jumbotron {
+  background: #2d7c9d; /* jelly bean */
+  border-color: #161d20;  /* bunker */
+  border-style: double;
+}
+
+.movieFooter {
+  height: 60px;
+  border-color: #161d20;  /* bunker */
+  border-style: double;
 }
