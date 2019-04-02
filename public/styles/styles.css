@@ -31,5 +31,12 @@ h1, h4 {
 
 .jumbotron {
   background: #2d7c9d; /* jelly bean */
- /* background:#161d20;  bunker */
+  border-color: #161d20;  /* bunker */
+  border-style: double;
+}
+
+.movieFooter {
+  height: 60px;
+  border-color: #161d20;  /* bunker */
+  border-style: double;
 }
