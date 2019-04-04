@@ -7,11 +7,32 @@ body {
   line-height: 2.5;
 }
 
+.modal {
+  background: #2d7c9d; /* jelly bean */
+  border-color: #161d20;  /* bunker */
+  border-style: double;
+  border-width: 8px;
+}
+
+.header {
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.modal-btn {
+  margin: 10px;
+}
+
 h1, h4 {
   /* font-family: 'Righteous', cursive; */
   font-family: 'Anton', sans-serif;
   color: silver;
   text-shadow: 2px 2px #161d20;  /* bunker */
+}
+
+.login {
+  margin-bottom: 20px;
+  margin-left: 20px;
 }
 
 .movie-poster {
@@ -20,9 +41,26 @@ h1, h4 {
   margin-top: 20px;
 }
 
+.form-control {
+  color: white;
+  text-shadow: 2px 2px black;
+}
+
+.lgi {
+  color: silver;
+  background:#161d20; /* bunker */
+  font-size: 3ex;
+  padding: 8px;
+  margin: 4px;
+}
+
 .container {
   background: #36498f;  /* chambray */
   color: white;
+}
+
+.btn-lg {
+  width: 180px;
 }
 
 .selections {
