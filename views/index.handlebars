@@ -2,83 +2,36 @@
   <div class="container">
     <div class="row">
       <div class="col-8 offset-2">
-        {{!-- <h1>{{msg}}</h1> --}}
+        <h4>{{msg}}</h4>
         <form class="clearfix mb-4" action="POST">
           <div class="form-group">
-            <label for="example-text">Enter your personalized genre here</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
+            <label for="example-text">Enter a keyword to search the movie database</label>
+            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Keyword search">
           </div>
           <div class="form-group">
-            <label for="example-description">Describe your category</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
+            <label for="example-description">Target category</label>
+            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Category description"></textarea>
           </div>
           <button id="submit" class="btn btn-primary float-right">Submit</button>
         </form>
-        <h4>Saved categories</h4>
-        <ul id="example-list" class="list-group">
+
+        <h4>Saved searches</h4>
+
+        <ul id="example-list" class="list-group selections">
           {{#each examples}}
           <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
+            <a class="lgi" href="example/{{this.id}}">{{this.text}}</a>
             <button class="btn btn-danger float-right delete">ｘ</button>
           </li>
           {{/each}}
         </ul>
 
-<div class="row selections">
-      <section class="col l12">
-      <div class="col lg3">
-          <img class="img thumbnail center-block movie-poster" src="images/Die.jpg" alt="Action poster">
-          <p class="caption">Action</p>
-          <p class="text-center">
-          <a class="btn btn-primary btn-lg" href="#" role="button">
-          <span class="fa fa-envelope"></span>Action</a>
-          </p>
+      <div class="row selections">
+        <h4 id="standards-header"></h4>
+        <section class="col l12" id="stock-genres"></section>
         </div>
-        <div class="col lg3">
-          <img class="img thumbnail center-block movie-poster" src="images/Raiders.jpg" alt="Action poster">
-          <p class="caption">Adventure</p>
-          <p class="text-center">
-          <a class="btn btn-primary btn-lg" href="#" role="button">
-          <span class="fa fa-envelope"></span>Adventure</a>
-          </p>
-        </div>
-        <div class="col lg3">
-          <img class="img thumbnail center-block movie-poster" src="images/Nemo.jpg" alt="Comedy poster">
-          <p class="caption">Animation</p>
-          <p class="text-center">
-          <a class="btn btn-primary btn-lg" href="#" role="button">
-          <span class="fa fa-envelope"></span>Animation</a>
-          </p>
-        </div>
-        <div class="col lg3">
-          <img class="img thumbnail center-block movie-poster" src="images/Penguins.jpg" alt="Action poster">
-          <p class="caption">Documentary</p>
-          <p class="text-center">
-          <a class="btn btn-primary btn-lg" href="#" role="button">
-          <span class="fa fa-envelope"></span>Documentary</a>
-          </p>
-        </div>
-        <div class="col lg3">
-            <img class="img thumbnail center-block movie-poster" src="images/Pans Labyrinth.jpg" alt="Action poster">
-            <p class="caption">Fantasy</p>
-            <p class="text-center">
-            <a class="btn btn-primary btn-lg" href="#" role="button">
-            <span class="fa fa-envelope"></span>Fantasy</a>
-            </p>
-          </div>
-          <div class="col lg3">
-            <img class="img thumbnail center-block movie-poster" src="images/Halloween.jpg" alt="Action poster">
-            <p class="caption">Horror</p>
-            <p class="text-center">
-            <a class="btn btn-primary btn-lg" href="#" role="button">
-            <span class="fa fa-envelope"></span>Horror</a>
-            </p>
-          </div>
-      </section>
       </div>
 
-
-      </div>
     </div>
   </div>
 </div>
