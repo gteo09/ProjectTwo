@@ -4,6 +4,53 @@ var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
 
+$("#standards-header").text("BROWSE STANDARD GENRES");
+
+// TODO: This variable should be a MySql database
+var standardGenres = [
+  {
+    genre: "Action",
+    poster: "Kingsman.jpg"
+  }, {
+    genre: "Adventure",
+    poster: "Raiders.jpg"
+  }, {
+    genre: "Animation",
+    poster: "Zelda.jpg"
+  }, {
+    genre: "Classic",
+    poster: "Casablanca.jpg"
+  }, {    
+    genre: "Comedy",
+    poster: "Borat.jpg"
+  }, {
+    genre: "Documentary",
+    poster: "Penguins.jpg"
+  }, {
+    genre: "Fantasy",
+    poster: "Pans Labyrinth.jpg"
+  }, {
+    genre: "Foreign",
+    poster: "La Dolce Vita.jpg"
+  }, {
+    genre: "Horror",
+    poster: "Halloween.jpg"
+  }
+];
+function populateStandardGenres() {
+  const first = '<div class="col lg3"><img class="img thumbnail center-block movie-poster" src="images/';
+  const second = '" alt="';
+  const third = 'poster"><p class="text-center"><a class="btn btn-primary btn-lg" href="#" role="button"><span class="fa fa-envelope"></span>';
+  const fourth = '</a></p></div>';
+  for(var i = 0; i < standardGenres.length; i++) {
+    $("#stock-genres").append(first + standardGenres[i].poster + second + standardGenres[i].genre + third + standardGenres[i].genre + fourth);
+  }
+}
+$(document).ready(function() {
+  populateStandardGenres();
+});
+
+
 // The API object contains methods for each kind of request we'll make
 var API = {
   saveExample: function(example) {

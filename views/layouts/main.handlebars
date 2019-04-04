@@ -18,20 +18,45 @@
 <body>
   <div class="container">
     <div class="jumbotron row clearfix">
-    <h1 class="header col l7">VIDEO WATCHLIST</h1>
-
+      <div class="col l7"> 
+        <h1 class="header">VIDEO WATCHLIST</h1>
+        <!-- Button to open the modal login form -->
+        <button class="btn login" onclick="document.getElementById('id01').style.display='block'">Login or sign up</button>
+      </div> 
     <div id="user-container"  class="col l5">
       <div class="row">
-        <div class="input-field col l8">
-          <textarea id="sign-in" class="materialize-textarea"></textarea>
-          <label for="sign-in">Log in</label>
-        </div>
-        <input class="btn input-field" type="button" id="white-login-button" value="Submit"/>
         <h4 class="header">Organize your videos</h4>
         <h4 class="header">Create custom genres</h4>      
       </div>
     </div>
   </div>
+
+<!-- The Modal -->
+<div id="id01" class="modal">
+  <span onclick="document.getElementById('id01').style.display='none'" 
+class="close" title="Close Modal"></span>
+
+  <!-- Modal Content -->
+  <form class="modal-content animate" action="/action_page.php">
+    <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+
+      <button class="btn modal-btn" type="submit">Login</button>
+      <button class="btn modal-btn cancelbtn" type="button" onclick="document.getElementById('id01').style.display='none'">Cancel</button>
+      <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+      </label>
+    </div>
+
+    <div class="container" style="background-color:#161d20">
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+  </form>
+</div>
 
     {{{body}}}
 
