@@ -28,46 +28,14 @@
           {{!-- <button id="exclude" class="btn btn-primary">Exclude</button> --}}
         </form>
         
-
-        <ul id="example-list" class="list-group selections row">
-          <h4>Search terms</h4>
-          {{!-- <div class="col l5"> --}}
-            {{#each examples}}
-              {{#if this.include}}
-                <li data-id="{{this.id}}" class="list-group-item">
-                  <a class="lgi" href="example/{{this.id}}">{{this.text}}</a>
-                  <button class="btn btn-danger float-right delete">⌫</button>
-                </li>
-              {{/if}}
-            {{/each}}
-            </div>
-          {{!-- <div class="col l5"> --}}
-  
-            {{!-- {{#each examples}}
-              {{#unless this.include}}
-                <li data-id="{{this.id}}" class="list-group-item">
-                  <a class="lgi" href="example/{{this.id}}">{{this.text}}</a>
-                  <button class="btn btn-danger float-right delete">⌫</button>
-                </li>
-              {{/unless}}
-            {{/each}}
-          </div> --}}
-
-        <button id="tmdb-search-results" class="btn btn-primary">View Search Results</button>
-        </ul>
-      </div>
-
       <div class="row selections">
         <h4 id="standards-header"></h4>
         <section class="col l12" id="stock-genres"></section>
         </div>
       </div>
 
-
-
     </div>
   </div>
 </div>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
