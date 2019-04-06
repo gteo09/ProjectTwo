@@ -2,7 +2,7 @@
   <div class="container">
     <div class="search-container">
     <div class="row">
-              <div style="text-align:center">
+      <div style="text-align:center">
       <div class="col-8 offset-2">
         <h4>{{msg}}</h4>
 
@@ -28,9 +28,10 @@
           <button id="exclude" class="btn btn-primary">Exclude</button>
         </form>
 
-        <h4>Search terms</h4>
+        
 
         <ul id="example-list" class="list-group selections row">
+          <h4>Search terms</h4>
           <div class="col l5">
             <h5>include</h5>
             {{#each examples}}
@@ -53,10 +54,10 @@
               {{/unless}}
             {{/each}}
           </div>
-        </ul>
 
         <button id="tmdb-search-results" class="btn btn-primary">View Search Results</button>
-        </div>
+        </ul>
+      </div>
 
       <div class="row selections">
         <h4 id="standards-header"></h4>

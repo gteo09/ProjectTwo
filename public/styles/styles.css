@@ -59,8 +59,13 @@ h1, h4 {
   color: white;
 }
 
+#tmdb-search-results {
+  margin: 20px;
+}
+
 .search-container {
   background:#161d20;  /* bunker */
+  padding: 20px;
 }
 
 .btn-lg {
