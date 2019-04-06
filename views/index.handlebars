@@ -1,36 +1,70 @@
 <div id="home">
   <div class="container">
+    <div class="search-container">
     <div class="row">
+              <div style="text-align:center">
       <div class="col-8 offset-2">
         <h4>{{msg}}</h4>
+
+      <!-- Dropdown Trigger -->
+      <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Select Search Category</a>
+
+      <!-- Dropdown Structure -->
+      <ul id='dropdown1' class='dropdown-content'>
+        <li><a href="#!">Actors</a></li>
+        <li><a href="#!">Years</a></li>
+        <li class="divider" tabindex="-1"></li>
+        <li><a href="#!"></a></li>
+        <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
+        <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
+      </ul>
+
         <form class="clearfix mb-4" action="POST">
           <div class="form-group">
             <label for="example-text">Enter a keyword to search the movie database</label>
             <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Keyword search">
           </div>
-          <div class="form-group">
-            <label for="example-description">Target category</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Category description"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
+          <button id="include" class="btn btn-primary">Include</button>
+          <button id="exclude" class="btn btn-primary">Exclude</button>
         </form>
 
-        <h4>Saved searches</h4>
+        <h4>Search terms</h4>
 
-        <ul id="example-list" class="list-group selections">
-          {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a class="lgi" href="example/{{this.id}}">{{this.text}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
+        <ul id="example-list" class="list-group selections row">
+          <div class="col l5">
+            <h5>include</h5>
+            {{#each examples}}
+              {{#if this.include}}
+                <li data-id="{{this.id}}" class="list-group-item">
+                  <a class="lgi" href="example/{{this.id}}">{{this.text}}</a>
+                  <button class="btn btn-danger float-right delete">⌫</button>
+                </li>
+              {{/if}}
+            {{/each}}
+            </div>
+          <div class="col l5">
+            <h5>exclude</h5>
+            {{#each examples}}
+              {{#unless this.include}}
+                <li data-id="{{this.id}}" class="list-group-item">
+                  <a class="lgi" href="example/{{this.id}}">{{this.text}}</a>
+                  <button class="btn btn-danger float-right delete">⌫</button>
+                </li>
+              {{/unless}}
+            {{/each}}
+          </div>
         </ul>
+
+        <button id="tmdb-search-results" class="btn btn-primary">View Search Results</button>
+        </div>
 
       <div class="row selections">
         <h4 id="standards-header"></h4>
         <section class="col l12" id="stock-genres"></section>
         </div>
       </div>
+
+
 
     </div>
   </div>

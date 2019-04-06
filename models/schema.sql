@@ -1,5 +1,27 @@
 DROP DATABASE IF EXISTS exampledb;
 CREATE DATABASE exampledb;
+USE exampledb;
+
+CREATE TABLE example
+(
+  id INT NOT NULL AUTO_INCREMENT,
+  text VARCHAR (255) NOT NULL,
+  include BOOLEAN DEFAULT false,
+  PRIMARY KEY (id)
+);
 
 DROP DATABASE IF EXISTS testdb;
 CREATE DATABASE testdb;
+
+DROP DATABASE IF EXISTS bespokedb;
+CREATE DATABASE bespokedb;
+USE bespokedb;
+
+CREATE TABLE bespoke
+(
+  id INT NOT NULL AUTO_INCREMENT,
+  poster VARCHAR (255) NOT NULL,
+  add_to_list BOOLEAN DEFAULT false,
+  PRIMARY KEY (id)
+);
+
