@@ -1,3 +1,33 @@
+// var customWatchlists = [
+//   {
+//     userName: "Tom",
+//     password: "password",
+//     watchlists: [
+//       {
+//         genre: "Film Noir",
+//         videos: [tmdb-object1, tmdb-object2m, tmdb-object3]
+//       }, {
+//         genre: "Premium TV",
+//         videos: [tmdb-object1, tmdb-object2m ,tmdb-object3]
+//       } 
+//     ]
+//   }, {
+//     userName: "Harry",
+//     password: "password",
+//     watchlists: [
+//       {
+//         genre: "Slasher",
+//         videos: [tmdb-object1, tmdb-object2, tmdb-object3]
+//       }, {
+//         genre: "Criterion Collection",
+//         videos: [tmdb-object1, tmdb-object2, tmdb-object3]
+//       } 
+//     ]
+//   }
+
+// ];
+
+
 // Get references to page elements
 var $exampleText = $("#example-text");
 var $includeBtn = $("#include");

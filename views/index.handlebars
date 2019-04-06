@@ -24,16 +24,14 @@
             <label for="example-text">Enter a keyword to search the movie database</label>
             <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Keyword search">
           </div>
-          <button id="include" class="btn btn-primary">Include</button>
-          <button id="exclude" class="btn btn-primary">Exclude</button>
+          <button id="include" class="btn btn-primary">Submit</button>
+          {{!-- <button id="exclude" class="btn btn-primary">Exclude</button> --}}
         </form>
-
         
 
         <ul id="example-list" class="list-group selections row">
           <h4>Search terms</h4>
-          <div class="col l5">
-            <h5>include</h5>
+          {{!-- <div class="col l5"> --}}
             {{#each examples}}
               {{#if this.include}}
                 <li data-id="{{this.id}}" class="list-group-item">
@@ -43,9 +41,9 @@
               {{/if}}
             {{/each}}
             </div>
-          <div class="col l5">
-            <h5>exclude</h5>
-            {{#each examples}}
+          {{!-- <div class="col l5"> --}}
+  
+            {{!-- {{#each examples}}
               {{#unless this.include}}
                 <li data-id="{{this.id}}" class="list-group-item">
                   <a class="lgi" href="example/{{this.id}}">{{this.text}}</a>
@@ -53,7 +51,7 @@
                 </li>
               {{/unless}}
             {{/each}}
-          </div>
+          </div> --}}
 
         <button id="tmdb-search-results" class="btn btn-primary">View Search Results</button>
         </ul>
