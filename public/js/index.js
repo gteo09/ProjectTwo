@@ -68,7 +68,8 @@ function showCustomLists() {
 
 $(document).ready(function() {
   showCustomLists();
-  $('.dropdown-trigger').dropdown();
+  // $('.dropdown-trigger').dropdown();
+  $('select').formSelect();
 });
 
 // The API object contains methods for each kind of request we'll make

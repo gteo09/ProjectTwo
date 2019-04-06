@@ -6,18 +6,16 @@
       <div class="col-8 offset-2">
         <h4>{{msg}}</h4>
 
-      <!-- Dropdown Trigger -->
-      <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Select Search Category</a>
-
-      <!-- Dropdown Structure -->
-      <ul id='dropdown1' class='dropdown-content'>
-        <li><a href="#!">Actors</a></li>
-        <li><a href="#!">Years</a></li>
-        <li class="divider" tabindex="-1"></li>
-        <li><a href="#!"></a></li>
-        <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-        <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
-      </ul>
+        <div class="input-field col s12">
+          <select>
+            <option value="" disabled selected>Choose your option</option>
+            <option value="1">Titles</option>
+            <option value="2">Actors</option>
+            <option value="3">Years</option>
+            <option value="3">Television</option>
+          </select>
+          <label>Select search category</label>
+        </div>
 
         <form class="clearfix mb-4" action="POST">
           <div class="form-group">
@@ -25,15 +23,15 @@
             <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Keyword search">
           </div>
           <button id="include" class="btn btn-primary">Submit</button>
-          {{!-- <button id="exclude" class="btn btn-primary">Exclude</button> --}}
         </form>
-        
-      <div class="row selections">
-        <h4 id="standards-header"></h4>
-        <section class="col l12" id="stock-genres"></section>
-        </div>
-      </div>
 
+        <div class="row selections">
+          <h4 id="standards-header"></h4>
+          <section class="col l12" id="stock-genres"></section>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 </div>
