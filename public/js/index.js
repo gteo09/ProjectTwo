@@ -68,12 +68,8 @@ function showCustomLists() {
 
 $(document).ready(function() {
   showCustomLists();
-  // Neither are working for the dropdown
   // $('.dropdown-trigger').dropdown();
-  // document.addEventListener('DOMContentLoaded', function() {
-  //   var elems = document.querySelectorAll('.dropdown-trigger');
-  //   var instances = M.Dropdown.init(elems, options);
-  // });
+  $('select').formSelect();
 });
 
 // The API object contains methods for each kind of request we'll make
