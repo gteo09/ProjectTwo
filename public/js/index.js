@@ -1,55 +1,80 @@
+// var customWatchlists = [
+//   {
+//     userName: "Tom",
+//     password: "password",
+//     watchlists: [
+//       {
+//         genre: "Film Noir",
+//         videos: [tmdb-object1, tmdb-object2m, tmdb-object3]
+//       }, {
+//         genre: "Premium TV",
+//         videos: [tmdb-object1, tmdb-object2m ,tmdb-object3]
+//       } 
+//     ]
+//   }, {
+//     userName: "Harry",
+//     password: "password",
+//     watchlists: [
+//       {
+//         genre: "Slasher",
+//         videos: [tmdb-object1, tmdb-object2, tmdb-object3]
+//       }, {
+//         genre: "Criterion Collection",
+//         videos: [tmdb-object1, tmdb-object2, tmdb-object3]
+//       } 
+//     ]
+//   }
+
+// ];
+
+
 // Get references to page elements
 var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
-var $submitBtn = $("#submit");
+var $includeBtn = $("#include");
+var $excludeBtn = $("#exclude");
 var $exampleList = $("#example-list");
+// var apikey = process.env.apikey;
 
-$("#standards-header").text("BROWSE STANDARD GENRES");
+$("#standards-header").text("VIEW YOUR CUSTOM LISTS");
 
-// TODO: This variable should be a MySql database
-var standardGenres = [
+var customCategories = [
   {
-    genre: "Action",
-    poster: "Kingsman.jpg"
+    category: "Asian Action",
+    titles: ["Oldboy", "A Bittersweet Life", "War of the Arrows"]
   }, {
-    genre: "Adventure",
-    poster: "Raiders.jpg"
+    category: "Marvel Universe",
+    titles: ["Ant-Man", "Black Panther", "Guardians of the Galaxy"]
   }, {
-    genre: "Animation",
-    poster: "Zelda.jpg"
+    category: "Mockumentaries",
+    titles: ["The Conspiracy", "Best in Show", "I'm Still Here"]
   }, {
-    genre: "Classic",
-    poster: "Casablanca.jpg"
-  }, {    
-    genre: "Comedy",
-    poster: "Borat.jpg"
-  }, {
-    genre: "Documentary",
-    poster: "Penguins.jpg"
-  }, {
-    genre: "Fantasy",
-    poster: "Pans Labyrinth.jpg"
-  }, {
-    genre: "Foreign",
-    poster: "La Dolce Vita.jpg"
-  }, {
-    genre: "Horror",
-    poster: "Halloween.jpg"
+    category: "Film Noir",
+    titles: ["Pickup", "The Killers", "Maltese Falcon"]
   }
 ];
-function populateStandardGenres() {
-  const first = '<div class="col lg3"><img class="img thumbnail center-block movie-poster" src="images/';
-  const second = '" alt="';
-  const third = 'poster"><p class="text-center"><a class="btn btn-primary btn-lg" href="#" role="button"><span class="fa fa-envelope"></span>';
-  const fourth = '</a></p></div>';
-  for(var i = 0; i < standardGenres.length; i++) {
-    $("#stock-genres").append(first + standardGenres[i].poster + second + standardGenres[i].genre + third + standardGenres[i].genre + fourth);
+
+function showCustomLists() {
+  for(var i = 0; i < customCategories.length; i++) {
+    var element = '<div class="col lg3"><img class="img thumbnail center-block movie-poster" src="images/';
+    element += customCategories[i].titles[0] + '.jpg';
+    element += '" alt="';
+    element += customCategories[i].category;
+    element += ' poster"><p class="text-center"><a class="btn btn-primary btn-lg" href="#" role="button"><span class="fa fa-envelope"></span>';
+    element += customCategories[i].category;
+    element += '</a></p></div>';
+    $("#stock-genres").append(element);
   }
 }
-$(document).ready(function() {
-  populateStandardGenres();
-});
 
+$(document).ready(function() {
+  showCustomLists();
+  // Neither are working for the dropdown
+  // $('.dropdown-trigger').dropdown();
+  // document.addEventListener('DOMContentLoaded', function() {
+  //   var elems = document.querySelectorAll('.dropdown-trigger');
+  //   var instances = M.Dropdown.init(elems, options);
+  // });
+});
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -113,11 +138,15 @@ var handleFormSubmit = function(event) {
 
   var example = {
     text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
+    include: true
   };
+  
+  if(event.target.innerHTML === "Exclude") {
+    example.include = false;
+  }
 
-  if (!(example.text && example.description)) {
-    alert("You must enter an example text and description!");
+  if (!(example.text)) {
+    alert("You must enter a keyword!");
     return;
   }
 
@@ -126,7 +155,7 @@ var handleFormSubmit = function(event) {
   });
 
   $exampleText.val("");
-  $exampleDescription.val("");
+  example.include = true;
 };
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
@@ -142,5 +171,6 @@ var handleDeleteBtnClick = function() {
 };
 
 // Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
+$includeBtn.on("click", handleFormSubmit);
+$excludeBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
