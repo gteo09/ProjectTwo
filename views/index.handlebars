@@ -12,15 +12,15 @@
             <option value="1">Titles</option>
             <option value="2">Actors</option>
             <option value="3">Years</option>
-            <option value="3">Television</option>
+            <option value="4">Television</option>
           </select>
           <label>Select search category</label>
         </div>
 
-        <form class="clearfix mb-4" action="POST">
+        <form class="clearfix mb-4" action="/api/search"> 
           <div class="form-group">
             <label for="example-text">Enter a keyword to search the movie database</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Keyword search">
+            <input type="text" name="input" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Keyword search">
           </div>
           <button id="include" class="btn btn-primary">Submit</button>
         </form>
