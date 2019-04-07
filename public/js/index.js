@@ -33,7 +33,7 @@ var $exampleText = $("#example-text");
 var $includeBtn = $("#include");
 var $excludeBtn = $("#exclude");
 var $exampleList = $("#example-list");
-// var apikey = process.env.apikey;
+var apikey = process.env.apikey;
 
 $("#standards-header").text("VIEW YOUR CUSTOM LISTS");
 

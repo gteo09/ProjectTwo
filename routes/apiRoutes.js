@@ -1,24 +1,39 @@
-var db = require("../models");
+var user = require("../models/user");
 
 module.exports = function(app) {
-  // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
+  app.post("/", function(req, res){
+    // {hashedUsername: affw, hashedPassword: 123112e}
+    user.create(req.body.hashedUsername, hashedhPassword, function(result){
+      res.json("User created!", {id, insertId});
     });
   });
 
-  // Create a new example
-  app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
-    });
-  });
+  app.delete("/:userid", function(req, res){
+    user.delete(req.params.userid, function(result){
+      if (result.changedRow == 0) {
+        return res.status(404).end();
+      } else {
+        res.status(200).end();
+      }
+    })
+  })
 
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.json(dbExample);
-    });
-  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 };
