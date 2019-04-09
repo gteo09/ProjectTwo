@@ -74,6 +74,7 @@ h1, h4 {
 
 .selections {
   background: #2d7c9d; /* jelly bean */
+  padding: 10px;
 }
 
 .jumbotron {
@@ -96,10 +97,23 @@ h1, h4 {
   text-align: center;
 }
 
-.dropdown-content{
-  width: max-content !important;
-  height:auto !important;
+.input-field {
+  background-color: #254558; /* blue dianne */
+  -webkit-text-fill-color: silver;
+  float: right;
 }
+
+#search-database {
+  margin-top: 20px;
+  float: right;
+  height: 40px;
+}
+
+/* .search-field {
+  width: 400px;
+  float: left;
+} */
+
 /*
 .dropbtn {
   background-color: #4CAF50;

@@ -1,9 +1,4 @@
-// Get references to page elements
-var $exampleText = $("#example-text");
-var $includeBtn = $("#include");
-var $exampleList = $("#example-list");
-var apikey = process.env.apikey;
-
+var $submitBtn = $("#search-database");
 
 $("#standards-header").text("VIEW YOUR CUSTOM LISTS");
 
@@ -39,6 +34,7 @@ function showCustomLists() {
 $(document).ready(function() {
   showCustomLists();
   $('select').formSelect();
+
 });
 
 // The API object contains methods for each kind of request we'll make
@@ -152,5 +148,5 @@ var handleDeleteBtnClick = function() {
 };
 
 // Add event listeners to the submit and delete buttons
-$includeBtn.on("click", handleFormSubmit);
+$submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);

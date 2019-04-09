@@ -5,8 +5,12 @@ require("dotenv").config();
   
 
 module.exports = function(app) {
+<<<<<<< HEAD
   
   // Get all examples
+=======
+
+>>>>>>> 99f82321da784d771e9e4f2902868c333a944b95
   app.get("/api/search", function(req, res) {
 
     var key = process.env.apikey;
@@ -16,7 +20,7 @@ module.exports = function(app) {
 
     axios.get(url)
       .then(response => {
-        console.log("AXIOS - results of TMDB query: ", response.data.results);
+        console.log("AXIOS results of TMDB query '" + query + "': ", response.data.results);
       })
       .catch(error => {
         console.log("AXIOS error: ", error);
