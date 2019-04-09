@@ -170,3 +170,8 @@ var handleDeleteBtnClick = function() {
 $includeBtn.on("click", handleFormSubmit);
 $excludeBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
+
+
+////////////////////////TODO/////////////////////
+//API CALLS FOR ACTOR,YEAR,MOVIE,TV SHOWS
+//GRAB RELEVANT INFO FROM JSON OBJECT AND PASS TO HANDLEBARS

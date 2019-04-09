@@ -1,14 +1,14 @@
 {
   "development": {
     "username": "root",
-    "password": "MSQabraxa$7",
+    "password": "",
     "database": "exampledb",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": "MSQabraxa$7",
+    "password": "",
     "database": "testdb",
     "host": "localhost",
     "dialect": "mysql",
@@ -16,7 +16,7 @@
   },
   "new": {
     "username": "root",
-    "password": "MSQabraxa$7",
+    "password": "",
     "database": "bespokedb",
     "host": "localhost",
     "dialect": "mysql",
