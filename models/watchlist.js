@@ -25,3 +25,5 @@ var watchlist = {
         })
     }
 }
+
+module.exports = watchlist;
