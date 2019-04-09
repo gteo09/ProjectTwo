@@ -1,39 +1,8 @@
-// var customWatchlists = [
-//   {
-//     userName: "Tom",
-//     password: "password",
-//     watchlists: [
-//       {
-//         genre: "Film Noir",
-//         videos: [tmdb-object1, tmdb-object2m, tmdb-object3]
-//       }, {
-//         genre: "Premium TV",
-//         videos: [tmdb-object1, tmdb-object2m ,tmdb-object3]
-//       } 
-//     ]
-//   }, {
-//     userName: "Harry",
-//     password: "password",
-//     watchlists: [
-//       {
-//         genre: "Slasher",
-//         videos: [tmdb-object1, tmdb-object2, tmdb-object3]
-//       }, {
-//         genre: "Criterion Collection",
-//         videos: [tmdb-object1, tmdb-object2, tmdb-object3]
-//       } 
-//     ]
-//   }
-
-// ];
-
-
 // Get references to page elements
 var $exampleText = $("#example-text");
 var $includeBtn = $("#include");
-var $excludeBtn = $("#exclude");
 var $exampleList = $("#example-list");
-// var apikey = process.env.apikey;
+
 
 $("#standards-header").text("VIEW YOUR CUSTOM LISTS");
 
@@ -68,12 +37,21 @@ function showCustomLists() {
 
 $(document).ready(function() {
   showCustomLists();
-  // $('.dropdown-trigger').dropdown();
   $('select').formSelect();
 });
 
 // The API object contains methods for each kind of request we'll make
 var API = {
+  search: function(input) {
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "GET",
+      url: "/api/search",
+      data: input
+    });    
+  },
   saveExample: function(example) {
     return $.ajax({
       headers: {
@@ -132,26 +110,32 @@ var refreshExamples = function() {
 var handleFormSubmit = function(event) {
   event.preventDefault();
 
-  var example = {
-    text: $exampleText.val().trim(),
-    include: true
-  };
+  var input = $("#example-text").val();
+  console.log("INPUT: ", input);
+  // var example = {
+  //   text: $exampleText.val().trim(),
+  //   include: true
+  // };
   
-  if(event.target.innerHTML === "Exclude") {
-    example.include = false;
-  }
+  // if(event.target.innerHTML === "Exclude") {
+  //   example.include = false;
+  // }
 
-  if (!(example.text)) {
-    alert("You must enter a keyword!");
-    return;
-  }
+  // if (!(example.text)) {
+  //   alert("You must enter a keyword!");
+  //   return;
+  // }
 
-  API.saveExample(example).then(function() {
-    refreshExamples();
+  // API.saveExample(example).then(function() {
+  //   refreshExamples();
+  // });
+  
+  API.search(input).then(function(data) {
+    console.log("SEARCH: ", data);
   });
 
-  $exampleText.val("");
-  example.include = true;
+  // $exampleText.val("");
+  // example.include = true;
 };
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
@@ -168,7 +152,6 @@ var handleDeleteBtnClick = function() {
 
 // Add event listeners to the submit and delete buttons
 $includeBtn.on("click", handleFormSubmit);
-$excludeBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
 
 
