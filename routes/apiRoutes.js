@@ -1,11 +1,23 @@
 var db = require("../models");
+var axios = require("axios");
+require("dotenv");
 
 module.exports = function(app) {
   // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
-    });
+  app.get("/api/search", function(req, res) {
+
+    var key = process.env.apikey;
+    var query = req._parsedOriginalUrl.query;
+
+    var url = "https://api.themoviedb.org/3/search/movie?api_key=" + key + "&language=en-US&query=" + query + "&page=1&include_adult=false";
+
+    axios.get(url)
+      .then(response => {
+        console.log("AXIOS - results of TMDB query: ", response.data.results);
+      })
+      .catch(error => {
+        console.log("AXIOS error: ", error);
+      });
   });
 
   // Create a new example
