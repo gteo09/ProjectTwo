@@ -1,7 +1,9 @@
 // Get references to page elements
 var $exampleText = $("#example-text");
-var $includeBtn = $("#include");
+var $includeBtn = $("#submit");
 var $exampleList = $("#example-list");
+
+var apiKey = "9218f6774ee57be1bff457242b1d7946";
 
 
 $("#standards-header").text("VIEW YOUR CUSTOM LISTS");
@@ -38,6 +40,7 @@ function showCustomLists() {
 $(document).ready(function() {
   showCustomLists();
   $('select').formSelect();
+  
 });
 
 // The API object contains methods for each kind of request we'll make
@@ -150,11 +153,161 @@ var handleDeleteBtnClick = function() {
   });
 };
 
+var displaySrcResults = function(){
+  event.preventDefault();
+  var filter = $("#search-dropdown").val();
+  var query = $("#example-text").val();
+  //API URLs to be used for switch 
+  var titleUrl = "https://api.themoviedb.org/3/search/movie?api_key="+apiKey+"&language=en-US&query="+query+"&page=1&include_adult=false";
+  var actorURL = "https://api.themoviedb.org/3/search/person?api_key="+apiKey+"&language=en-US&query="+query+"&page=1&include_adult=false";
+  var yearURL =  "https://api.themoviedb.org/3/discover/movie?api_key="+apiKey+"&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_year="+query;
+  var tvURL = "https://api.themoviedb.org/3/search/tv?api_key="+apiKey+"&language=en-US&query="+query+"&page=1"
+
+    //switch case statement will check the filter and execute the corresponding API call
+
+     switch(filter){
+       //filter = title/general
+      case "1":
+      $.ajax({
+        url: titleUrl,
+        method: "GET"
+      }).then(function(response){
+        
+        var movieArr = response.results;
+        parseMovArr(movieArr);
+      })
+      break;
+      //filter = actors
+      case "2":
+      $.ajax({
+        url: actorURL,
+        method: "GET"
+      }).then(function(response){
+        
+        var actArr = response.results;
+        var popRolesArr = response.results[0].known_for;
+        parseActArr(actArr, popRolesArr);
+      })
+      break;
+      //filter = years
+      case "3":
+      $.ajax({
+        url: yearURL,
+        method: "GET"
+      }).then(function(response){
+        
+        var yearArr = response.results;
+        parseYearArr(yearArr);
+      })
+      break;
+      //filter = television
+      case "4":
+      $.ajax({
+        url: tvURL,
+        method: "GET"
+      }).then(function(response){
+        
+        var tvArr = response.results;
+        parseTvArr(tvArr);
+      })
+    }
+};
+
+
+//append to handlebars/render when I figure it out
+var parseMovArr = function(arr){
+  console.log(arr)
+  $("div-header").text("Search Results");
+
+  for(var i=0;i<arr.length; i++){
+    
+    var infoObj={
+      movieID: arr[i].id,
+      title: arr[i].original_title,
+      overview: arr[i].overview,
+      posterURL: arr[i].poster_path,
+      release: arr[i].release_date
+    };
+    var imgURL = "https://image.tmdb.org/t/p/w300"+infoObj.posterURL;
+    //then push to handlebars
+    var emptyEl = $("<div>");
+    var img = $("<img>").attr("src", imgURL);
+    var titleEl = $("<p>").text(infoObj.title);
+    var overviewEl = $("<p>").text(infoObj.overview);
+    var releaseEl = $("<p>").text(infoObj.release);
+    var addButton = $("<button>").text("Add to Subcategory").attr("value", infoObj.movieID).attr("class", "addtocat");
+
+    $("#resultscatcher").append(emptyEl);
+    emptyEl.append(img).append(titleEl).append(releaseEl).append(overviewEl).append(addButton); 
+  };
+};
+
+var parseActArr = function(arr1, arr2){
+
+  console.log(arr1, arr2)
+  $("div-header").text("Search Results");
+
+  for(var i=0;i<arr1.length; i++){
+    var infoObj={
+      actorID: arr1[i].id,
+      name: arr1[i].name,
+      picture: arr1[i].profile_path
+    };
+    //code here to push to handlebars
+  };
+  //grab info from known roles
+  for(var j=0;j<arr2.length; j++){
+    var popRolesInfo = {
+      movieID: arr2[j].id,
+      title: arr2[j].original_title,
+      overview: arr2[j].overview,
+      posterURL: arr2[j].poster_path,
+      release: arr2[j].release_date
+    };
+    //then push to handlebars
+    
+  };
+};
+
+var parseYearArr = function(arr){
+
+  $("div-header").text("Search Results");
+  
+  for(var i=0;i<arr.length; i++){
+    var infoObj={
+      movieID: arr[i].id,
+      title: arr[i].original_title,
+      overview: arr[i].overview,
+      posterURL: arr[i].poster_path,
+      release: arr[i].release_date 
+    };
+    //then push to handlebars
+
+  };
+};
+
+var parseTvArr = function(arr){
+  console.log(arr)
+  $("div-header").text("Search Results");
+  for(var i=0;i<arr.length; i++){
+    var infoObj={
+      tvID: arr[i].id,
+      title: arr[i].original_name,
+      overview: arr[i].overview,
+      posterURL: arr[i].poster_path,
+      release: arr[i].first_air_date     
+    };
+    //then push to handlebars
+  };
+};
 // Add event listeners to the submit and delete buttons
-$includeBtn.on("click", handleFormSubmit);
+$includeBtn.on("click", handleFormSubmit, displaySrcResults);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
 
 
+
+
+
 ////////////////////////TODO/////////////////////
-//API CALLS FOR ACTOR,YEAR,MOVIE,TV SHOWS
+
 //GRAB RELEVANT INFO FROM JSON OBJECT AND PASS TO HANDLEBARS
