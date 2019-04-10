@@ -5,12 +5,6 @@ require("dotenv").config();
   
 
 module.exports = function(app) {
-<<<<<<< HEAD
-  
-  // Get all examples
-=======
-
->>>>>>> 99f82321da784d771e9e4f2902868c333a944b95
   app.get("/api/search", function(req, res) {
 
     var key = process.env.apikey;
@@ -19,10 +13,10 @@ module.exports = function(app) {
     var url = "https://api.themoviedb.org/3/search/movie?api_key=" + key + "&language=en-US&query=" + query + "&page=1&include_adult=false";
 
     axios.get(url)
-      .then(response => {
+      .then(function(response) {
         console.log("AXIOS results of TMDB query '" + query + "': ", response.data.results);
       })
-      .catch(error => {
+      .catch(function(response) {
         console.log("AXIOS error: ", error);
       });
   });
@@ -41,8 +35,8 @@ module.exports = function(app) {
   //route for creating user
   app.post("/", function(req, res){
     // {hashedUsername: affw, hashedPassword: 123112e}
-    user.create(req.body.hashedUsername, hashedhPassword, function(result){
-      res.json("User created!", {id, insertId});
+    user.create(req.body.userName, pw, function(result){
+      res.json("User created!");
     })
   });
 

@@ -64,5 +64,9 @@ var orm = {
             if (err) throw err;
              cb(result);
         });
+    },
+
+    deleteMovie: function(movieId, cb){
+        var queryStr = 
     }
 }
