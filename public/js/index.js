@@ -234,7 +234,7 @@ var parseMovArr = function(arr){
     var img = $("<img>").attr("src", imgURL);
     var titleEl = $("<p>").text(infoObj.title);
     var overviewEl = $("<p>").text(infoObj.overview);
-    var releaseEl = $("<p>").text(infoObj.release);
+    var releaseEl = $("<p>").text("Release Date:"+infoObj.release);
     var addButton = $("<button>").text("Add to Subcategory").attr("value", infoObj.movieID).attr("class", "addtocat");
 
     $("#resultscatcher").append(emptyEl);
@@ -244,17 +244,6 @@ var parseMovArr = function(arr){
 
 var parseActArr = function(arr1, arr2){
 
-  console.log(arr1, arr2)
-  $("div-header").text("Search Results");
-
-  for(var i=0;i<arr1.length; i++){
-    var infoObj={
-      actorID: arr1[i].id,
-      name: arr1[i].name,
-      picture: arr1[i].profile_path
-    };
-    //code here to push to handlebars
-  };
   //grab info from known roles
   for(var j=0;j<arr2.length; j++){
     var popRolesInfo = {
@@ -264,8 +253,34 @@ var parseActArr = function(arr1, arr2){
       posterURL: arr2[j].poster_path,
       release: arr2[j].release_date
     };
-    //then push to handlebars
-    
+    var imgURL = "https://image.tmdb.org/t/p/w300"+popRolesInfo.posterURL;
+    //code here to push to handlebars file
+    var emptyEl = $("<div>");
+    var relatedEl = $("<h5>").text("Popular Roles");
+    var img = $("<img>").attr("src", imgURL);
+    var titleEl = $("<p>").text(popRolesInfo.title);
+    var overviewEl = $("<p>").text(popRolesInfo.overview);
+    var releaseEl = $("<p>").text("Release Date:"+popRolesInfo.release);
+    var addButton = $("<button>").text("Add to Subcategory").attr("value", popRolesInfo.movieID).attr("class", "addtocat");
+
+    $("#resultscatcher").append(emptyEl);
+    emptyEl.append(relatedEl).append(img).append(titleEl).append(releaseEl).append(overviewEl).append(addButton);    
+  };
+
+  for(var i=0;i<arr1.length; i++){
+    var infoObj={
+      actorID: arr1[i].id,
+      name: arr1[i].name,
+      picture: arr1[i].profile_path
+    };
+    //code here to push to handlebars file
+    var imgURL = "https://image.tmdb.org/t/p/w300"+infoObj.picture;
+    var empty = $("<div>");
+    var image = $("<img>").attr("src", imgURL);
+    var name = $("<p>").attr("value", infoObj.actorID);
+
+    $("#image").append(empty);
+    empty.append(name).append(image).append()
   };
 };
 
@@ -282,6 +297,17 @@ var parseYearArr = function(arr){
       release: arr[i].release_date 
     };
     //then push to handlebars
+    var imgURL = "https://image.tmdb.org/t/p/w300"+infoObj.posterURL;
+    //then push to handlebars
+    var emptyEl = $("<div>");
+    var img = $("<img>").attr("src", imgURL);
+    var titleEl = $("<p>").text(infoObj.title);
+    var overviewEl = $("<p>").text(infoObj.overview);
+    var releaseEl = $("<p>").text("Release Date:"+infoObj.release);
+    var addButton = $("<button>").text("Add to Subcategory").attr("value", infoObj.movieID).attr("class", "addtocat");
+
+    $("#resultscatcher").append(emptyEl);
+    emptyEl.append(img).append(titleEl).append(releaseEl).append(overviewEl).append(addButton);
 
   };
 };
@@ -298,6 +324,17 @@ var parseTvArr = function(arr){
       release: arr[i].first_air_date     
     };
     //then push to handlebars
+    var imgURL = "https://image.tmdb.org/t/p/w300"+infoObj.posterURL;
+    //then push to handlebars
+    var emptyEl = $("<div>");
+    var img = $("<img>").attr("src", imgURL);
+    var titleEl = $("<p>").text(infoObj.title);
+    var overviewEl = $("<p>").text(infoObj.overview);
+    var releaseEl = $("<p>").text("Release Date:"+infoObj.release);
+    var addButton = $("<button>").text("Add to Subcategory").attr("value", infoObj.tvID).attr("class", "addtocat");
+
+    $("#resultscatcher").append(emptyEl);
+    emptyEl.append(img).append(titleEl).append(releaseEl).append(overviewEl).append(addButton);
   };
 };
 // Add event listeners to the submit and delete buttons
