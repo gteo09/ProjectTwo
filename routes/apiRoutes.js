@@ -3,7 +3,7 @@ var axios = require("axios");
 require("dotenv");
 
 module.exports = function(app) {
-  // Get all examples
+
   app.get("/api/search", function(req, res) {
 
     var key = process.env.apikey;
@@ -13,7 +13,7 @@ module.exports = function(app) {
 
     axios.get(url)
       .then(response => {
-        console.log("AXIOS - results of TMDB query: ", response.data.results);
+        console.log("AXIOS results of TMDB query '" + query + "': ", response.data.results);
       })
       .catch(error => {
         console.log("AXIOS error: ", error);
