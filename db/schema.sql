@@ -1,5 +1,4 @@
 CREATE DATABASE atlas_db;
-
 USE atlas_db;
 
 -- Create a users table with the required fields --
@@ -7,17 +6,17 @@ CREATE TABLE users
 (
 	userId int NOT NULL AUTO_INCREMENT,
 	username VARCHAR(255) NOT NULL,
+	pw VARCHAR(255) NOT NULL,
+  PRIMARY KEY(userId)
+)Engine=INNODB;
 
-	'password' VARCHAR(255) NOT NULL,
-  PRIMARY KEY(userId),
-	CONSTRAINT watch_lists FOREIGN KEY (userId)
-	REFERENCES users(userId);
-);
-
-CREATE TABLE watch_lists
+CREATE TABLE watchlists
 (
 	id int NOT NULL PRIMARY KEY,
 	list_name VARCHAR(50) NOT NULL,
 	movies JSON,
-	userId INT FOREIGN KEY REFERENCES users(userId)
-);
+	created_by INT,
+	FOREIGN KEY (created_by) REFERENCES users(userId)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE
+)Engine=INNODB;

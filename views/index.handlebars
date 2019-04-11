@@ -19,20 +19,36 @@
         </div>
         <div class="row">
           <form class="col l9">
-
-          <div action="/api/search"> 
-            <div class="form-group input-field col l8">
-              <label for="example-text"></label>
-              <input type="text" name="input" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter search term">
-            </div>
-            <div class="form-group col l3">
-              <button id="search-database" class="btn btn-primary">Submit</button>
-            </div>
-        </form>
+            <div action="/api/search"> 
+              <div class="form-group input-field col l8">
+                <label for="example-text"></label>
+                <input type="text" name="input" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter search term">
+              </div>
+              <div class="form-group col l3">
+                <button id="search-database" class="btn btn-primary">Submit</button>
+              </div>
+          </form>
         </div>
-        </div>
-      </div>
-
+        <h5>Search results</h5>
+        <div id="search-results"></div>
+        <section class="row results-row">
+          <h5 class="col s4">Videodrome (1986)</h5>
+          <button class="btn read col s3">Read synopsis</button>
+          <div class="input-field col s2">
+            <select>
+              <option value="" disabled selected>Select list</option>
+              <option  value="1">Asian Action</option>
+              <option value="2">Film Noir</option>
+            </select>             
+          </div>
+          <div class="col s2">
+            <button class="btn">Save</button>
+          </div>
+          <hr>
+        </section>
+      </div> 
+    </div>
+</div>
       <div class="row selections">
           <h4 id="standards-header"></h4>
           <section class="col l12" id="stock-genres"></section>
