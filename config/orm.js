@@ -50,6 +50,16 @@ var orm = {
         connection.query(queryStr, [listName], function(err, result){
             cb(result);
         })
-    }
-}
+    },
+
+    getCategories: function(cb){
+        var queryStr = "SELECT * FROM atlas_db.watchlists";
+        connection.query(queryStr, function(err, result){
+            cb(result)
+
+        })
+    }    
+};
+
+//module.exports = orm;
 

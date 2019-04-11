@@ -1,4 +1,5 @@
 var db = require("../models");
+var orm = require("../config/orm")
 
 module.exports = function(app) {
   // Load index page
@@ -20,8 +21,16 @@ module.exports = function(app) {
     });
   });
 
+  // Load page that displays all subcategories 
+  app.get("/categories", function(req, res){
+
+    res.render("categories", {customcat: categories.customCategories})
+      
+  });
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
-  });
+  });  
 };
+
+
