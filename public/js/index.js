@@ -1,3 +1,4 @@
+
 // Get references to page elements
 var $exampleText = $("#example-text");
 var $includeBtn = $("#submit");
@@ -42,7 +43,7 @@ function showCustomLists() {
 $(document).ready(function() {
   showCustomLists();
   $('select').formSelect();
-  
+
 });
 
 // The API object contains methods for each kind of request we'll make
@@ -321,7 +322,9 @@ var parseTvArr = function(arr){
   };
 };
 // Add event listeners to the submit and delete buttons
+
 $includeBtn.on("click", handleFormSubmit, displaySrcResults);
+
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
 
 

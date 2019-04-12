@@ -4,18 +4,24 @@
     <div class="row">
       <div style="text-align:center">
       <div class="col-8 offset-2">
+        <div class="row selections">
         <h4>{{msg}}</h4>
+
 
         <div class="input-field col s4" class="text-center" >
           <select id="search-dropdown">
             <option value="" disabled selected>Choose your option</option>
             <option value="1">Titles</option>
+
             <option value="2">Actors</option>
-            <option value="3">Years</option>
-            <option value="4">Television</option>
+            <option value="3">Years (up to)</option>
+            <option value="4">Years (since)</option>
+            <option value="5">Television</option>
           </select>
-          <label>Select search category</label>
         </div>
+        <div class="row">
+          <form class="col l9">
+
 
         <form class="clearfix mb-4" action="/api/search"> 
           <div class="form-group">
@@ -31,7 +37,8 @@
           </section>
           </div>
 
-        <div class="row selections">
+
+      <div class="row selections">
           <h4 id="standards-header"></h4>
           <section class="col l12" id="stock-genres"></section>
           </div>
