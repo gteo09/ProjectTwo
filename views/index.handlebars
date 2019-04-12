@@ -31,6 +31,15 @@
                   </section>
                </div>
                <div class="filters-div"></div>
+               <ul>
+                {{#each result}}
+                  {{> movies/movie-block}}
+                {{/each}}
+
+               </ul>
+              
+              
+               
                <div class="row selections">
                   <h4 id="standards-header"></h4>
                   <section class="col l12" id="stock-genres"></section>
