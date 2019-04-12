@@ -23,19 +23,19 @@ $("#add-filter").on("click", function(event){
   $("#example-text").val("");
 });
 
-$("#submit").on("click", function(event){
-  event.preventDefault();
-  queryStr = "https://api.themoviedb.org/3/search/movie?api_key=9218f6774ee57be1bff457242b1d7946" 
-            + queryStr;
-  console.log(queryStr);
-  $.ajax({
-    url: queryStr,
-    method: "GET"
-  }).then(function(response){
-    console.log(response);
-  });
-  queryStr = "";
-})
+// $("#submit").on("click", function(event){
+//   event.preventDefault();
+//   queryStr = "https://api.themoviedb.org/3/search/movie?api_key=9218f6774ee57be1bff457242b1d7946" 
+//             + queryStr;
+//   console.log(queryStr);
+//   $.ajax({
+//     url: queryStr,
+//     method: "GET"
+//   }).then(function(response){
+//     console.log(response);
+//   });
+//   queryStr = "";
+// });
 
 function myTrim(str){
   return str.split(" ").join("%20");
@@ -359,5 +359,5 @@ var parseTvArr = function(arr){
   };
 };
 // Add event listeners to the submit and delete buttons
-/* $submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick); */
+ $submitBtn.on("click", handleFormSubmit, displaySrcResults);
+//$exampleList.on("click", ".delete", handleDeleteBtnClick); */

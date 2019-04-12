@@ -91,4 +91,4 @@ function deleteFromArr(arr, movieId){
         }
     }
     return resultArr;
-}
+};

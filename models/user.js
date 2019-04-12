@@ -12,5 +12,4 @@ var user = {
            cb(result);
        })
     },
-
-}
+};
