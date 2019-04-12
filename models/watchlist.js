@@ -1,14 +1,20 @@
 var orm = require("../config/orm");
 
 var watchlist = {
-    getAll: function(userId, cb){
-        orm.getAllLists(userId, function(result){
+    getAll: function(cb){
+        orm.getAllLists(function(result){
             cb(result);
         })
     },
     
-    create: function(listName, userId, cb){
-        orm.createList(listName, userId, function(result){
+    getMovies: function(listName, cb){
+        orm.getAllMovies(listName, function(result){
+            cb(result);
+        })
+    },
+
+    create: function(listName, cb){
+        orm.createList(listName, function(result){
             cb(result);
         });
     },
@@ -21,6 +27,12 @@ var watchlist = {
 
     delete: function(listName, cb){
         orm.deleteList(listName, function(result){
+            cb(result);
+        })
+    },
+
+    deleteMovie: function(movieId, listName, cb){
+        orm.deleteMovie(movieId, listName, function(result){
             cb(result);
         })
     }

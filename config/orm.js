@@ -9,14 +9,6 @@ var orm = {
         });
     },
 
-    deleteUser: function(userName, cb){
-        var queryStr = "DELETE FROM atlas_db.users WHERE username = ?";
-        connection.query(queryStr, [userName], function(err, result){
-            if (err) throw err;
-            cb(result);
-        });
-    },
-
     validateUser: function(userName, password, cb){
         var queryStr = "SELECT *  FROM atlas_db.users WHERE username = ?";
         connection.query(queryStr,[userName], function(err, result){
@@ -29,9 +21,9 @@ var orm = {
         });
     },
 
-    createList: function(listName, userId, cb){
-        var queryStr = "INSERT INTO atlas_db.watchlists (list_name, created_by) VALUE (?, ?)";
-        connection.query(queryStr, [listName, userId], function(err, result){
+    createList: function(listName, cb){
+        var queryStr = "INSERT INTO atlas_db.watchlists (list_name) VALUE (?)";
+        connection.query(queryStr, [listName], function(err, result){
             if (err) throw err;
             cb(result);
         });
@@ -39,8 +31,8 @@ var orm = {
     
     addMovies: function(listName, moviesArr, cb){
         var currentList;
-        var retrieveQuery = "Select movies FROM atlas_db.watchlists WHERE list_name = " + listName;
-        connection.query(retrieveQuery, function(err, result){
+        var retrieveQuery = "Select movies FROM atlas_db.watchlists WHERE list_name = ?";
+        connection.query(retrieveQuery, [listName], function(err, result){
             currentList = result[0].movies.concat(moviesArr);
         });
         var queryStr = "UPDATE atlas_db.watchlists SET movies = ? WHERE list_name = ?";
@@ -58,15 +50,45 @@ var orm = {
         });
     },
 
-    getAllLists: function(userId, cb){
-        var queryStr = "SELECT list_name FROM atlas_db.watchlists WHERE userId = " + userId;
+    getAllLists: function(cb){
+        var queryStr = "SELECT list_name FROM atlas_db.watchlists";
         connection.query(queryStr, function(err, result){
             if (err) throw err;
-             cb(result);
+            cb(result);
         });
     },
 
-    deleteMovie: function(movieId, cb){
-        var queryStr = 
+    deleteMovie: function(movieId, listName, cb){
+        var currentList;
+        var retrieveQuery = "SELECT movies FROM atlas_db.watchlists WHERE list_name = ?";
+        connection.query(retrieveQuery, [listName], function(err, result){
+            if (err) throw err;
+            currentList = deleteFromArr(result[0].movies, movieId);
+        });
+        connection.query("UPDATE atlas_db.watchlists SET movies = ? WHERE list_name = ?", [currentList, listName], function(err, result){
+            if (err) throw err;
+            cb(result);
+        })
+    },
+
+    getAllMovies: function(listName, cb){
+        var queryStr = "SELECT movies FROM atlas_db.watchlists WHERE list_name = ?";
+        connection.query(queryStr, [listName], function(err, result){
+            if (err) throw err;
+            cb(result);
+        });
     }
+}
+
+module.exports = orm;
+
+
+function deleteFromArr(arr, movieId){
+    var resultArr;
+    for (var i = 0; i < arr.length; i++){
+        if (arr[i].id == movieId){
+            resultArr = arr.slice(0, i).concat(arr.slice(i + 1, arr.length));
+        }
+    }
+    return resultArr;
 }

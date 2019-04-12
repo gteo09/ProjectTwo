@@ -1,4 +1,43 @@
+
 var $submitBtn = $("#search-database");
+
+//$(".chosen-selected").chosen();
+var queryStr = "";
+
+$("#add-filter").on("click", function(event){
+  event.preventDefault(); 
+  var filter = $("#search-dropdown").val();
+
+  switch (filter) {
+    case "1":
+      queryStr += "&query=" + myTrim($("#example-text").val());
+    case "2":
+      queryStr += "&query=" + myTrim($("#example-text").val());
+    case "3":
+      queryStr += "&year=" + myTrim($("#example-text").val());
+  }
+
+  $(".filters-div").append("<div>" + $("#example-text").val() + "</div>");
+});
+
+$("#submit").on("click", function(event){
+
+  queryStr = "https://api.themoviedb.org/3/search/movie?api_key=" + process.env.apikey 
+            + queryStr;
+  $.ajax({
+    "url": "queryStr",
+    "type": "GET"
+  }).then(function(result){
+    console.log(result);
+  })
+})
+
+
+
+function myTrim(str){
+  return str.split(" ").join("%20");
+}
+
 
 $("#standards-header").text("VIEW YOUR CUSTOM LISTS");
 
@@ -148,5 +187,5 @@ var handleDeleteBtnClick = function() {
 };
 
 // Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+/* $submitBtn.on("click", handleFormSubmit);
+$exampleList.on("click", ".delete", handleDeleteBtnClick); */
