@@ -3,6 +3,8 @@ var $exampleText = $("#example-text");
 var $includeBtn = $("#submit");
 var $exampleList = $("#example-list");
 
+
+
 var apiKey = "9218f6774ee57be1bff457242b1d7946";
 
 
@@ -115,30 +117,10 @@ var handleFormSubmit = function(event) {
 
   var input = $("#example-text").val();
   console.log("INPUT: ", input);
-  // var example = {
-  //   text: $exampleText.val().trim(),
-  //   include: true
-  // };
-  
-  // if(event.target.innerHTML === "Exclude") {
-  //   example.include = false;
-  // }
-
-  // if (!(example.text)) {
-  //   alert("You must enter a keyword!");
-  //   return;
-  // }
-
-  // API.saveExample(example).then(function() {
-  //   refreshExamples();
-  // });
   
   API.search(input).then(function(data) {
     console.log("SEARCH: ", data);
   });
-
-  // $exampleText.val("");
-  // example.include = true;
 };
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
@@ -242,6 +224,7 @@ var parseMovArr = function(arr){
   };
 };
 
+//takes actor array and known_for array
 var parseActArr = function(arr1, arr2){
 
   //grab info from known roles
@@ -340,9 +323,6 @@ var parseTvArr = function(arr){
 // Add event listeners to the submit and delete buttons
 $includeBtn.on("click", handleFormSubmit, displaySrcResults);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
-
-
-
 
 
 ////////////////////////TODO/////////////////////
