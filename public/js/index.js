@@ -1,12 +1,49 @@
 
-// Get references to page elements
-var $exampleText = $("#example-text");
-var $includeBtn = $("#submit");
-var $exampleList = $("#example-list");
+var $submitBtn = $("#search-database");
+
+//$(".chosen-selected").chosen();
+var queryStr = "";
+
+$("#add-filter").on("click", function(event){
+  event.preventDefault(); 
+  //var filter = $("#search-dropdown").val();
+  var filter = document.getElementById("search-dropdown").value;
+  switch (filter) {
+    case "1":
+      queryStr += "&query=" + myTrim($("#example-text").val());
+      break;
+    case "2":
+      queryStr += "&query=" + myTrim($("#example-text").val());
+      break;
+    case "3":
+      queryStr += "&year=" + myTrim($("#example-text").val());
+      break;
+  }
+  $(".filters-div").append("<span>" + ($("#example-text").val() + "  " + "</span>"));
+  $("#example-text").val("");
+});
+
+$("#submit").on("click", function(event){
+  event.preventDefault();
+  queryStr = "https://api.themoviedb.org/3/search/movie?api_key=9218f6774ee57be1bff457242b1d7946" 
+            + queryStr;
+  console.log(queryStr);
+  $.ajax({
+    url: queryStr,
+    method: "GET"
+  }).then(function(response){
+    console.log(response);
+  });
+  queryStr = "";
+})
+
+function myTrim(str){
+  return str.split(" ").join("%20");
+}
 
 
 
-var apiKey = "9218f6774ee57be1bff457242b1d7946";
+
 
 
 $("#standards-header").text("VIEW YOUR CUSTOM LISTS");
@@ -322,12 +359,5 @@ var parseTvArr = function(arr){
   };
 };
 // Add event listeners to the submit and delete buttons
-
-$includeBtn.on("click", handleFormSubmit, displaySrcResults);
-
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
-
-
-////////////////////////TODO/////////////////////
-
-//GRAB RELEVANT INFO FROM JSON OBJECT AND PASS TO HANDLEBARS
+/* $submitBtn.on("click", handleFormSubmit);
+$exampleList.on("click", ".delete", handleDeleteBtnClick); */

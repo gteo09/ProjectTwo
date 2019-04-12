@@ -3,14 +3,14 @@
 <li class="movie-block container">
     <h2 class="row movie-title">{{original_title}}</h2>
     <p class="row movie-categories">
-    {{#each movie-categories}}
+    {{#each genre_ids}}
         <span>{{this}}/</span>
     {{/each}}
     </p>    
     <div class="row details-block">
         <div class="col m6 movie-img"></div>
         <div class="col m1"></div>
-        <div class="col m5 movie-description">{{description}}</div>
+        <div class="col m5 movie-overview">{{overview}}</div>
     </div>
 </li>
 
