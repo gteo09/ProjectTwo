@@ -8,13 +8,18 @@
         <h4>{{msg}}</h4>
 
         <div class="input-field col l3">
+<<<<<<< HEAD
           <select>
             <option value="" disabled selected>Choose a search option</option>
             <option  value="1">Titles</option>
+=======
+          <select id="search-dropdown">
+            <option value="" disabled selected>Choose a search option</option>
+            <option value="1">Titles</option>
+>>>>>>> c419bda... How I think search results should look
             <option value="2">Actors</option>
-            <option value="3">Years (up to)</option>
-            <option value="4">Years (since)</option>
-            <option value="5">Television</option>
+            <option value="3">Years</option>
+            <option value="4">Television</option>
           </select>
         </div>
         <div class="row">
@@ -29,6 +34,7 @@
               </div>
           </form>
         </div>
+<<<<<<< HEAD
         <h5>Search results</h5>
         <div id="search-results"></div>
         <section class="row results-row">
@@ -56,6 +62,47 @@
         </div>
         <div class="clearfix">
         </div>
+=======
+
+        <div class="row selections">
+          <h4 id="search-results-header"></h4>
+          <section class="col l12" id="resultscatcher">
+
+            {{!-- <div id="image"></div> --}}
+          </section>
+        </div>
+
+        <h5>Search results</h5>
+        <div id="search-results"></div>
+          <section class="row results-row">
+            <h5 class="col s4">Videodrome (1986)</h5>
+            <button class="btn read col s3">Read synopsis</button>
+            <div class="input-field col s2">
+              <select>
+                <option value="" disabled selected>Select list</option>
+                {{!-- The options should be a handlebars `each` block from the watchlist table --}}
+                <option value="Asian Action">Asian Action</option>
+                <option value="Marvel Universe">Marvel Universe</option>
+                <option value="Mockumentary">Mockumentary</option>
+                <option value="Film Noir">Film Noir</option>
+              </select>              
+            </div>
+            <div class="col s2">
+              <button class="btn">Save</button>
+            </div>
+            <hr>
+          </section>
+        </div>
+
+      </div>
+    </div>
+    {{!-- <div class="row selections">
+      <h4 id="standards-header"></h4>
+        <section class="col l12" id="stock-genres"></section>
+      </div>
+    </div> --}}
+    <div class="clearfix"></div>
+>>>>>>> c419bda... How I think search results should look
       </div>
     </div>
   </div>
