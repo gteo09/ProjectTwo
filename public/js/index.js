@@ -77,9 +77,65 @@ function showCustomLists() {
   }
 }
 
+// This array should come from the 'list_name` of the watchlists table
+var customLists = [
+  "Asian Action", "Marvel Universe", "Mockumentaries", "Film Noir"
+]
+
+var customListSelector = function generateCustomListSelector() { 
+  var selector = '';
+  for(var i = 0; i < customLists.length; i++) {
+    selector += '<option value="' + (i + 1) + '">' + customLists[i] + '</option>';
+  }
+  console.log("Selector: ", selector);
+  // $(selector).insertAfter("#options");
+  $("#options").append(selector);
+  // $(selector).append("#options");
+  // return selector;
+};
+
+var Selector = '<option value="1">Asian Action</option><option value="2">Marvel Universe</option><option value="3">Mockumentaries</option><option value="4">Film Noir</option>';
+
+{/* <select>
+  <option value="" disabled selected>Select list</option>
+  <option value="1">Asian Action</option>
+  <option value="2">Marvel Universe</option>
+  <option value="3">Mockumentaries</option>
+  <option value="4">Film Noir</option>
+</select> */}
+
+/* <select>
+<option value="" disabled selected>Select list</option>
+<option  value="1">Asian Action</option>
+<option value="2">Film Noir</option>
+</select>   */
+
+/* <div class="input-field col s2">
+<select>
+  <option value="" disabled selected>Select list</option>
+  <option  value="1">Asian Action</option>
+  <option value="2">Film Noir</option>
+</select>             
+</div> */
+
+function showSearchResults() {
+  for(var i = 0; i < searchResults.length; i++) {
+    var el = '<section class="row results-row"><h5 class="col s4">';
+    el += searchResults[i].title + '</h5><button class="btn read col s3">';
+    el += '<button class="btn read col s3">Read synopsis</button>';
+    el += customListSelector();
+    el += '<div class="col s2"><button class="btn">Save</button></div>';
+    el += '<hr></section>';
+    $("#search-results").append(el);
+  }
+}
+
 $(document).ready(function() {
-  showCustomLists();
+  // showCustomLists();
   $('select').formSelect();
+  // showSearchResults();
+  // customListSelector();
+  $('.modal').modal();
 
 });
 
@@ -120,33 +176,33 @@ var API = {
 };
 
 // refreshExamples gets new examples from the db and repopulates the list
-var refreshExamples = function() {
-  API.getExamples().then(function(data) {
-    var $examples = data.map(function(example) {
-      var $a = $("<a>")
-        .text(example.text)
-        .attr("href", "/example/" + example.id);
+// var refreshExamples = function() {
+//   API.getExamples().then(function(data) {
+//     var $examples = data.map(function(example) {
+//       var $a = $("<a>")
+//         .text(example.text)
+//         .attr("href", "/example/" + example.id);
 
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": example.id
-        })
-        .append($a);
+//       var $li = $("<li>")
+//         .attr({
+//           class: "list-group-item",
+//           "data-id": example.id
+//         })
+//         .append($a);
 
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
+//       var $button = $("<button>")
+//         .addClass("btn btn-danger float-right delete")
+//         .text("ｘ");
 
-      $li.append($button);
+//       $li.append($button);
 
-      return $li;
-    });
+//       return $li;
+//     });
 
-    $exampleList.empty();
-    $exampleList.append($examples);
-  });
-};
+//     // $exampleList.empty();
+//     // $exampleList.append($examples);
+//   });
+// };
 
 // handleFormSubmit is called whenever we submit a new example
 // Save the new example to the db and refresh the list
@@ -163,16 +219,17 @@ var handleFormSubmit = function(event) {
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
 // Remove the example from the db and refresh the list
-var handleDeleteBtnClick = function() {
-  var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
+// var handleDeleteBtnClick = function() {
+//   var idToDelete = $(this)
+//     .parent()
+//     .attr("data-id");
 
-  API.deleteExample(idToDelete).then(function() {
-    refreshExamples();
-  });
-};
+//   API.deleteExample(idToDelete).then(function() {
+//     refreshExamples();
+//   });
+// };
 
+<<<<<<< HEAD
 var displaySrcResults = function(){
   event.preventDefault();
   var filter = $("#search-dropdown").val();
@@ -361,3 +418,121 @@ var parseTvArr = function(arr){
 // Add event listeners to the submit and delete buttons
  $submitBtn.on("click", handleFormSubmit, displaySrcResults);
 //$exampleList.on("click", ".delete", handleDeleteBtnClick); */
+=======
+<<<<<<< HEAD
+// Add event listeners to the submit and delete buttons
+$submitBtn.on("click", handleFormSubmit);
+=======
+var displaySrcResults = function(){
+  event.preventDefault();
+
+  var filter = $("#search-dropdown").val();
+  var query = $("#example-text").val().trim();
+  var apiKey = "9218f6774ee57be1bff457242b1d7946";
+
+  //API URLs to be used for switch 
+  var titleUrl = "https://api.themoviedb.org/3/search/movie?api_key="+apiKey+"&language=en-US&query="+query+"&page=1&include_adult=false";
+  var actorURL = "https://api.themoviedb.org/3/search/person?api_key="+apiKey+"&language=en-US&query="+query+"&page=1&include_adult=false";
+  var yearURL =  "https://api.themoviedb.org/3/discover/movie?api_key="+apiKey+"&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_year="+query;
+  var tvURL = "https://api.themoviedb.org/3/search/tv?api_key="+apiKey+"&language=en-US&query="+query+"&page=1";
+
+  //switch case statement will check the filter and execute the corresponding API call
+  switch(filter){
+    //filter = title/general
+    case "1":
+    $.ajax({
+      url: titleUrl,
+      method: "GET"
+    }).then(function(response){  
+      var movieArr = response.results;
+      parseMovArr(movieArr);
+      console.log("Array: " + parseMovArr(movieArr));
+    });
+    break;
+    //filter = actors
+    case "2":
+    $.ajax({
+      url: actorURL,
+      method: "GET"
+    }).then(function(response){
+      var actArr = response.results;
+      var popRolesArr = response.results[0].known_for;
+      parseActArr(actArr, popRolesArr);
+    });
+    break;
+    //filter = years
+    case "3":
+    $.ajax({
+      url: yearURL,
+      method: "GET"
+    }).then(function(response){
+      var yearArr = response.results;
+      parseYearArr(yearArr);
+    });
+    break;
+    //filter = television
+    case "4":
+    $.ajax({
+      url: tvURL,
+      method: "GET"
+    }).then(function(response){
+      var tvArr = response.results;
+      parseTvArr(tvArr);
+    });
+    break;
+  }
+};
+
+function createPopup(str, id) {
+  var el = '<a class="waves-effect waves-light btn modal-trigger" href="#modal' + id + '">Synopsis</a>';
+  el += '<div id="modal' + id + '" class="modal">';
+  el += '<div class="modal-content"><h4>Overview</h4>';
+  el += '<p>' + str + '</p>';
+  el += '</div><div class="modal-footer">';
+  el += '<a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a></div></div>';
+  return el;
+}
+
+var parseMovArr = function(arr){
+
+  $("#search-results-header").text("Search Results");
+
+  for(var i = 0; i < arr.length; i++){    
+    var infoObj = {
+      movieID: arr[i].id,
+      title: arr[i].original_title,
+      overview: arr[i].overview,
+      posterURL: arr[i].poster_path,
+      release: arr[i].release_date.substring(0, 4)
+    };
+
+    var imgURL = "https://image.tmdb.org/t/p/w300"+infoObj.posterURL;
+    
+    //then push to handlebars
+    // var emptyEl = $("<div>");
+    // var img = $("<img>").attr("src", imgURL);
+    // var titleEl = $("<p>").text(infoObj.title);
+    // var overviewEl = $("<p>").text(infoObj.overview);
+    // var releaseEl = $("<p>").text("Release Date:"+infoObj.release);
+    // var addButton = $("<button>").text("Add to watchlist").attr("value", infoObj.movieID).attr("class", "addtocat");
+
+    // This does not render properly in jQuery
+    // var popUp = createPopup(infoObj.overview, i);
+ 
+    var el = '<section class="row results-row"><h6 class="col s4">';
+    el += infoObj.title + ' (' + infoObj.release + ')</h6>';
+    el += '<button class="btn read col s3">Read synopsis</button>';
+    // el += popUp;
+    el += '<div class="col s2"><button class="btn">Save</button></div>';
+    // el += '<div class="col s2">' + listSelector + '</div>';
+    el += '<hr></section>';
+
+    $("#resultscatcher").append(el);
+    // emptyEl.append(titleEl).append(releaseEl).append(overviewEl).append(addButton); 
+  }
+};
+
+// Add event listeners to the submit and delete buttons
+$submitBtn.on("click", handleFormSubmit, displaySrcResults);
+// $exampleList.on("click", ".delete", handleDeleteBtnClick);
+
