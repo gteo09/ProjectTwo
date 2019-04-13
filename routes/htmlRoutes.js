@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 var watchlist = require("../models/watchlist");
+=======
+var db = require("../models");
+var orm = require("../config/orm")
+>>>>>>> 880a1af4b1b9eb058762157d359577b0e31c6a9b
 
 module.exports = function(app) {
   // Load index page
@@ -34,8 +39,16 @@ module.exports = function(app) {
     })
   });
 
+  // Load page that displays all subcategories 
+  app.get("/categories", function(req, res){
+
+    res.render("categories", {customcat: categories.customCategories})
+      
+  });
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
-  });
+  });  
 };
+
+

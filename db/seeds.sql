@@ -4,7 +4,7 @@ INSERT INTO users (username, pw) VALUES ('Ethan', 'test');
 
 
 INSERT INTO watchlists(list_name, movies)
-VALUES("Ethan's fav", [
+VALUES("Ethan's fav", '[
     {
       "vote_count": 17210,
       "id": 118340,
@@ -43,7 +43,7 @@ VALUES("Ethan's fav", [
       ],
       "backdrop_path": "/aJn9XeesqsrSLKcHfHP4u5985hn.jpg",
       "adult": false,
-      "overview": "The Guardians must fight to keep their newfound family together as they unravel the mysteries of Peter Quill's true parentage.",
+      "overview": "The Guardians must fight to keep their newfound family together as they unravel the mysteries of Peter Quills true parentage.",
       "release_date": "2017-04-19"
     },
     {
@@ -64,7 +64,7 @@ VALUES("Ethan's fav", [
       ],
       "backdrop_path": "/jRSAkKG9QSu6Nc1zvI3ejmgLshe.jpg",
       "adult": false,
-      "overview": "The third film based on Marvel's Guardians of the Galaxy.",
+      "overview": "The third film based on Marvels Guardians of the Galaxy.",
       "release_date": "2022-05-31"
     },
     {
@@ -87,4 +87,4 @@ VALUES("Ethan's fav", [
       "overview": "Lego Marvel Super Heroes - Guardians of the Galaxy: The Thanos Threat is a computer-animated Lego film based on Marvel Comics and starring the Guardians of the Galaxy.",
       "release_date": "2017-12-09"
     }
-  ])
+  ]')
