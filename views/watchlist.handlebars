@@ -1,2 +1,35 @@
-<button id="testBtn">click me</button>
+<div class="movies-div">
+  <h4>MOVIES ON THE LIST</h4> 
+  <ul>
+    {{#each watchlist.movies}}
+      {{> movies/movie-block}}
+    {{/each}}
+  </ul>
+  <button data-listId="{{watchlist.listId}}" class="deleteList">delete watchlist</button>
+</div>
 
+<script>
+    $(".deleteList").on("click", function(event){
+        console.log($(this).attr('data-listId'));
+        event.preventDefault();
+        var route = "/api/" + $(this).attr('data-listId');
+        $.ajax(route, {
+          type: "DELETE"
+        }).then(function(){
+            console.log(route);
+            window.location.href = "/";
+        });
+    });
+
+    $(".deleteMovie").on("click", function(event){
+        event.preventDefault();
+        var routeArr = window.location.href.split("/");
+        var route = "/api/" + routeArr[routeArr.length - 1] + "/" + $(this).attr("data-movieId");
+        console.log(route);
+        $.ajax(route, {
+            type: "DELETE"
+        }).then(function(){
+            location.reload(true);
+        })
+    })
+</script>

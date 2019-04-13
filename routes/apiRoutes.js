@@ -30,37 +30,40 @@ module.exports = function(app) {
   }); */
 
   //add movies to the watchlist
-  app.post("/api/:listName", function(req, res){
-    watchlist.add(req.params.listName, req.body.movies, function(result){
+  app.post("/api/:listId", function(req, res){
+    watchlist.add(req.params.listId, req.body.movies, function(result){
       res.json({id: result.insertId});
     });
   });
 
-  //create watchlist with the name and userId provided
-  app.post("/api/:listName", function(req, res){
-    watchlist.create(req.params.listName, req.params.userId, function(result){
+  //create watchlist with the name provided
+  app.post("/api", function(req, res){
+    watchlist.create(req.body.listName, req.body.cover_img, function(result){
       res.json(result);
     });
   });
 
-  //remove one movie from the list it belongs to
-  app.put("/api/:listName", function(req, res){
-    watchlist.deleteMovie(req.params.listName, req.body.movieId, function(result){
-      res.json(result);
-    });
-  });
 
   //delete one list from database
-  app.delete("/api/:listName", function(req, res){
-    watchlist.delete(req.params.listName, /* req.params.userId,  */function(result){
+  app.delete("/api/:listId", function(req, res){
+    watchlist.delete(req.params.listId, function(result){
       res.json(result);
     })
   });
 
   //delete one movie from a watchlist
-  app.delete("/api/:listName/:movieId", function(req, res){
-    watchlist.deleteMovie(req.params.movieId, req.params.listName, /* req.params.userId,  */function(result){
+  app.delete("/api/:listId/:movieId", function(req, res){
+    watchlist.deleteMovie(req.params.movieId, req.params.listId, function(result){
       res.json(result);
     })
-  })
+  });
+
+  //generate the modal with all lists on it
+  app.get("/api", function(req, res){
+    watchlist.showAll(function(result){
+      res.render("index", {list_min: result});
+    });
+  });
+
+
 };

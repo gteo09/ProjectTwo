@@ -8,6 +8,10 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <!-- Link to local stylesheet -->
       <link rel="stylesheet" type="text/css" href="styles/styles.css">
+      <!-- Link to Font Awesome -->
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
       <!-- Link to local font -->
       <link href="https://fonts.googleapis.com/css?family=Anton|Righteous" rel="stylesheet">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -17,20 +21,21 @@
       <!-- Compiled and minified JavaScript -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+
       <title>Landing Page</title>
    </head>
    <body>
       <div class="container">
       <div class="jumbotron row clearfix" style="text-align:center" server.js>
          <div class="col l7">
-            <h1 class="header">VIDEO WATCHLIST</h1>
+            <h1 class="header"><a href="/">VIDEO WATCHLIST</a></h1>
             <!-- Button to open the modal login form -->
-            <button class="btn login" onclick="document.getElementById('id01').style.display='block'">Login or sign up</button>
+            {{!-- <button class="btn login" onclick="document.getElementById('id01').style.display='block'">Login or sign up</button> --}}
          </div>
          <div id="user-container"  class="col l5">
             <div class="row">
-               <h4 class="header">Organize your videos</h4>
-               <h4 class="header">Create custom lists</h4>
+               <h4 class="header"><a href="/watchlists">Organize your videos</a></h4>
             </div>
          </div>
       </div>
@@ -56,7 +61,19 @@
             </div>
          </form>
       </div>
-      {{{body}}}
+      <div id="home">
+        <div class="container">
+        <div class="search-container">
+        <div class="row">
+          <div style="text-align:center">
+              <div class="col-8 offset-2">
+                <div class="row selections">
+                <h4>{{msg}}</h4>
+             {{{body}}}
+      
+          </div>
+      </div>
+    </div>
       <footer class="movieFooter">
          <div class="footer-copyright">
             <div class="container">

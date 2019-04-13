@@ -1,79 +1,80 @@
 var connection = require("./connection");
 
 var orm = {
-    addUser: function(userName, password, cb){
-        var queryStr = "INSERT INTO atlas_db.users (username, pw) VALUE (?, ?)";
-        connection.query(queryStr, [userName, password], function(err, result){
-            if (err) throw err;
-            cb(result);
-        });
-    },
 
-    validateUser: function(userName, password, cb){
-        var queryStr = "SELECT *  FROM atlas_db.users WHERE username = ?";
-        connection.query(queryStr,[userName], function(err, result){
-            if (err) throw err;
-            if (result.pw === password){
-                cb(result);
-            } else {
-                return false;
-            }
-        });
-    },
-
-    createList: function(listName, cb){
-        var queryStr = "INSERT INTO atlas_db.watchlists (list_name) VALUE (?)";
-        connection.query(queryStr, [listName], function(err, result){
+    createList: function(listName, cover_img, cb){
+        var queryStr = "INSERT INTO atlas_db.watchlists (list_name, cover_img) VALUE (?, ?)";
+        connection.query(queryStr, [listName, cover_img], function(err, result){
             if (err) throw err;
             cb(result);
         });
     },
     
-    addMovies: function(listName, moviesArr, cb){
+    addMovies: function(listId, moviesArr, cb){
+        console.log(moviesArr);
         var currentList;
-        var retrieveQuery = "Select movies FROM atlas_db.watchlists WHERE list_name = ?";
-        connection.query(retrieveQuery, [listName], function(err, result){
-            currentList = result[0].movies.concat(moviesArr);
-        });
-        var queryStr = "UPDATE atlas_db.watchlists SET movies = ? WHERE list_name = ?";
-        connection.query(queryStr, [currentList, listName], function(err, result){
-            if (err) throw err;
-            cb(result);
+        var retrieveQuery = "Select movies FROM atlas_db.watchlists WHERE id = ?";
+        connection.query(retrieveQuery, [listId], function(err, result){
+            var jsonArr = JSON.parse(result[0].movies);
+            if (jsonArr == null){
+                currentList = moviesArr;
+            } else {
+                currentList = jsonArr.concat(moviesArr);
+            }
+            currentList = JSON.stringify(currentList);
+            var queryStr = "UPDATE atlas_db.watchlists SET movies = ?, cover_img = ? WHERE id = ?";
+            var imgLink = "https://image.tmdb.org/t/p/w200" + moviesArr[0].poster_path;
+            connection.query(queryStr, [currentList, imgLink, listId], function(err, result){
+                if (err) throw err;
+                cb(result);
+            });
         });
     }, 
 
-    deleteList: function(listName, cb){
-        var queryStr = "DELETE FROM atlas_db.watchlists WHERE list_name = ?";
-        connection.query(queryStr, [listName], function(err, result){
+    deleteList: function(listId, cb){
+        var queryStr = "DELETE FROM atlas_db.watchlists WHERE id = ?";
+        connection.query(queryStr, [listId], function(err, result){
             if (err) throw err; 
             cb(result);
         });
     },
 
     getAllLists: function(cb){
-        var queryStr = "SELECT list_name FROM atlas_db.watchlists";
+        var queryStr = "SELECT * FROM atlas_db.watchlists";
         connection.query(queryStr, function(err, result){
             if (err) throw err;
             cb(result);
         });
     },
 
-    deleteMovie: function(movieId, listName, cb){
-        var currentList;
-        var retrieveQuery = "SELECT movies FROM atlas_db.watchlists WHERE list_name = ?";
-        connection.query(retrieveQuery, [listName], function(err, result){
+    deleteMovie: function(movieId, listId, cb){
+        var currentArr;
+        var retrieveQuery = "SELECT movies FROM atlas_db.watchlists WHERE id = ?";
+        connection.query(retrieveQuery, [listId], function(err, result){
             if (err) throw err;
-            currentList = deleteFromArr(result[0].movies, movieId);
+            var jsonArr = JSON.parse(result[0].movies);
+            //console.log(jsonArr);
+            currentArr = deleteFromArr(jsonArr, movieId);
+            currentArr = JSON.stringify(currentArr);
+            //console.log(currentArr);
+            connection.query("UPDATE atlas_db.watchlists SET movies = ? WHERE id = ?", [currentArr, listId], function(err, result){
+                if (err) throw err;
+                cb(result);
+            })
         });
-        connection.query("UPDATE atlas_db.watchlists SET movies = ? WHERE list_name = ?", [currentList, listName], function(err, result){
-            if (err) throw err;
-            cb(result);
-        })
     },
 
-    getAllMovies: function(listName, cb){
-        var queryStr = "SELECT movies FROM atlas_db.watchlists WHERE list_name = ?";
-        connection.query(queryStr, [listName], function(err, result){
+    getAllMovies: function(listId, cb){
+        var queryStr = "SELECT movies FROM atlas_db.watchlists WHERE id = ?";
+        connection.query(queryStr, [listId], function(err, result){
+            if (err) throw err;
+            cb(result);
+        });
+    },
+
+    showAllList: function(cb){
+        var queryStr = "SELECT id, list_name FROM atlas_db.watchlists";
+        connection.query(queryStr, function(err, result){
             if (err) throw err;
             cb(result);
         });
@@ -86,10 +87,14 @@ module.exports = orm;
 
 
 function deleteFromArr(arr, movieId){
+    //console.log(arr);
+    //console.log(movieId);
     var resultArr;
     for (var i = 0; i < arr.length; i++){
         if (arr[i].id == movieId){
+            //console.log("cut at " + i);
             resultArr = arr.slice(0, i).concat(arr.slice(i + 1, arr.length));
+            //console.log(resultArr);
         }
     }
     return resultArr;

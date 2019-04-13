@@ -1,7 +1,4 @@
 
-<<<<<<< HEAD
-var $submitBtn = $("#search-database");
-=======
 // Get references to page elements
 var $exampleText = $("#example-text");
 var $includeBtn = $("#submit");
@@ -9,8 +6,7 @@ var $exampleList = $("#example-list");
 
 var apiKey = "9218f6774ee57be1bff457242b1d7946";
 
->>>>>>> 880a1af4b1b9eb058762157d359577b0e31c6a9b
-
+/* 
 //$(".chosen-selected").chosen();
 var queryStr = "";
 
@@ -37,7 +33,7 @@ $("#submit").on("click", function(event){
   event.preventDefault();
   queryStr = "https://api.themoviedb.org/3/search/movie?api_key=9218f6774ee57be1bff457242b1d7946" 
             + queryStr;
-  console.log(queryStr);
+  //console.log(queryStr);
   $.ajax({
     url: queryStr,
     method: "GET"
@@ -47,19 +43,18 @@ $("#submit").on("click", function(event){
   });
   queryStr = "";
   $(".filters-div").empty();
-})
+}) 
 
 function myTrim(str){
   return str.split(" ").join("%20");
 }
 
+ */
 
 
 
 
-
-$("#standards-header").text("VIEW YOUR CUSTOM LISTS");
-
+/* 
 var customCategories = [
   {
     category: "Asian Action",
@@ -75,8 +70,8 @@ var customCategories = [
     titles: ["Pickup", "The Killers", "Maltese Falcon"]
   }
 ];
-
-function showCustomLists() {
+ */
+/* function showCustomLists() {
   for(var i = 0; i < customCategories.length; i++) {
     var element = '<div class="col lg3"><img class="img thumbnail center-block movie-poster" src="images/';
     element += customCategories[i].titles[0] + '.jpg';
@@ -87,10 +82,15 @@ function showCustomLists() {
     element += '</a></p></div>';
     $("#stock-genres").append(element);
   }
-}
+} */
+
+
+
+
+
 
 $(document).ready(function() {
-  showCustomLists();
+  //showCustomLists();
   $('select').formSelect();
 
 });
@@ -265,32 +265,43 @@ var displaySrcResults = function(){
     }
 };
 
+var movieArray = [];
+var sendMovieId;
+
 
 //append to handlebars/render when I figure it out
 var parseMovArr = function(arr){
   console.log(arr)
-  $("div-header").text("Search Results");
+  $("#div-header").text("Search Results");
 
   for(var i=0;i<arr.length; i++){
     
     var infoObj={
-      movieID: arr[i].id,
-      title: arr[i].original_title,
+      id: arr[i].id,
+      title: arr[i].title,
       overview: arr[i].overview,
-      posterURL: arr[i].poster_path,
-      release: arr[i].release_date
+      poster_path: arr[i].poster_path,
+      release: arr[i].release_date,
+      genre_ids: arr[i].genre_ids
     };
-    var imgURL = "https://image.tmdb.org/t/p/w300"+infoObj.posterURL;
+
+    movieArray.push(infoObj);
+
+    var imgURL = "https://image.tmdb.org/t/p/w300"+infoObj.poster_path;
     //then push to handlebars
     var emptyEl = $("<div>");
-    var img = $("<img>").attr("src", imgURL);
+    var img = $("<img>").attr("src", imgURL).attr("class", "movie_poster");
     var titleEl = $("<p>").text(infoObj.title);
     var overviewEl = $("<p>").text(infoObj.overview);
     var releaseEl = $("<p>").text("Release Date:"+infoObj.release);
-    var addButton = $("<button>").text("Add to Subcategory").attr("value", infoObj.movieID).attr("class", "addtocat");
+    var addButton = $("<a>").html("<i class='fas fa-plus'></i>")
+                      .attr("data-movieId", infoObj.id).attr("class", "addtocat").attr("href", "#ex1").attr("rel","modal:open");
+
+    
+    
 
     $("#resultscatcher").append(emptyEl);
-    emptyEl.append(img).append(titleEl).append(releaseEl).append(overviewEl).append(addButton); 
+    emptyEl.append(img).append(titleEl).append(addButton).append(releaseEl).append(overviewEl); 
   };
 };
 
@@ -300,10 +311,11 @@ var parseActArr = function(arr1, arr2){
   for(var j=0;j<arr2.length; j++){
     var popRolesInfo = {
       movieID: arr2[j].id,
-      title: arr2[j].original_title,
+      title: arr2[j].title,
       overview: arr2[j].overview,
       posterURL: arr2[j].poster_path,
-      release: arr2[j].release_date
+      release: arr2[j].release_date,
+      genre_ids: arr[i].genre_ids
     };
     var imgURL = "https://image.tmdb.org/t/p/w300"+popRolesInfo.posterURL;
     //code here to push to handlebars file
@@ -338,15 +350,16 @@ var parseActArr = function(arr1, arr2){
 
 var parseYearArr = function(arr){
 
-  $("div-header").text("Search Results");
+  $("#div-header").text("Search Results");
   
   for(var i=0;i<arr.length; i++){
     var infoObj={
       movieID: arr[i].id,
-      title: arr[i].original_title,
+      title: arr[i].title,
       overview: arr[i].overview,
       posterURL: arr[i].poster_path,
-      release: arr[i].release_date 
+      release: arr[i].release_date,
+      genre_ids: arr[i].genre_ids
     };
     //then push to handlebars
     var imgURL = "https://image.tmdb.org/t/p/w300"+infoObj.posterURL;
@@ -366,7 +379,7 @@ var parseYearArr = function(arr){
 
 var parseTvArr = function(arr){
   console.log(arr)
-  $("div-header").text("Search Results");
+  $("#div-header").text("Search Results");
   for(var i=0;i<arr.length; i++){
     var infoObj={
       tvID: arr[i].id,
@@ -390,20 +403,35 @@ var parseTvArr = function(arr){
   };
 };
 // Add event listeners to the submit and delete buttons
-<<<<<<< HEAD
-/* $submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick); */
-=======
 
 $includeBtn.on("click", handleFormSubmit, displaySrcResults);
 
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
 
+$(document).on("click", ".addtocat", function(){
+  sendMovieId = $(this).attr("data-movieId");
+  console.log("sendMovieId", sendMovieId);
+})
 
-
-
+$(".addToThisList").on("click", function(){
+  console.log(sendMovieId);
+  var route = "/api/" + $(this).attr("data-listId");
+  var movieData;
+  for (var i = 0; i < movieArray.length; i++){
+    console.log(movieArray[i]);
+    if (movieArray[i].id == sendMovieId) {
+      movieData = movieArray[i];
+    }
+  }
+  console.log(movieData);
+  $.ajax(route, {
+    type: "POST",
+    data: {
+          movies: [movieData]
+    }
+  });
+}); 
 
 ////////////////////////TODO/////////////////////
 
 //GRAB RELEVANT INFO FROM JSON OBJECT AND PASS TO HANDLEBARS
->>>>>>> 880a1af4b1b9eb058762157d359577b0e31c6a9b
