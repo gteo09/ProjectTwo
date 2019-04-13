@@ -32,9 +32,11 @@ $("#submit").on("click", function(event){
     url: queryStr,
     method: "GET"
   }).then(function(response){
+    //tmdb response here!!
     console.log(response);
   });
   queryStr = "";
+  $(".filters-div").empty();
 })
 
 function myTrim(str){
