@@ -1,0 +1,28 @@
+<div class="watchlists-div">
+          <h4>Saved Watchlists</h4>
+            <div class="row">
+              <div class="col l2 spacer"></div>
+              <div class="col l5">
+                <form>
+                  <input id="newListNameInput" type="text" name="newListName">
+                </form>
+              </div>
+              <div class="col l3">
+                <span>
+                  <button id="create_list" class="btn btn-primary">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                </span>
+              </div>
+              <div class="col l4 spacer"></div>
+            </div>
+            
+            
+            
+          <ul> 
+            {{#each watchlists}}
+              {{> watchlists/watchlist-block}}
+            {{/each}}
+          </ul>
+          
+        </div>

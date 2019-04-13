@@ -1,13 +1,5 @@
-<div id="home">
-  <div class="container">
-    <div class="search-container">
-    <div class="row">
-      <div style="text-align:center">
-      <div class="col-8 offset-2">
-        <div class="row selections">
-        <h4>{{msg}}</h4>
 
-
+        <!-- -->        
         <div class="input-field col s4" class="text-center" >
           <select id="search-dropdown">
             <option value="" disabled selected>Choose your option</option>
@@ -19,6 +11,7 @@
             <option value="5">Television</option>
           </select>
         </div>
+        <!-- -->
         <div class="row">
           <form class="col l9">
 
@@ -31,8 +24,18 @@
           <button id="submit" class="btn btn-primary">Submit</button>
         </form>
         <div class="row selections">
-          <h4 id="div-header">Search Results</h4>
+          <h4 id="div-header"></h4>
           <section class="col l12" id="resultscatcher">
+            <!-- here -->
+            <div id="ex1" class="modal">
+              <p>Add to: </p>
+              <ul>
+                {{#each list_min}}
+                  {{> watchlists/popuplists}}
+                {{/each}}
+              </ul>
+            </div>
+
             <div id="image"></div>
           </section>
           </div>
@@ -41,11 +44,39 @@
       <div class="row selections">
           <h4 id="standards-header"></h4>
           <section class="col l12" id="stock-genres"></section>
+          
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
+        <!-- -->
+
+
 
 <script src="/js/index.js"></script>
+<script>
+  $("#create_list").on("click", function(event){
+    event.preventDefault();
+    $.ajax("/api", {
+      type: "POST",
+      data: {
+        listName: $("#newListNameInput").val(),
+        cover_img: "https://image.tmdb.org/t/p/w200/pKGGzotqkNDEL2ix4VU1bWmteK5.jpg"
+      }
+    }).then(
+      function(){
+        location.reload(true);
+      })
+  });
+
+  $(".addtocat").on("click", function(event){
+    event.preventDefault();
+    $.ajax("/api", {
+      type: "GET"
+    }).then(
+
+    )
+
+  });
+  
+
+
+</script>

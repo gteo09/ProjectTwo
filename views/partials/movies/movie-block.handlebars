@@ -1,26 +1,20 @@
-
-
 <li class="movie-block container">
-    <h2 class="row movie-title">{{original_title}}</h2>
-    <p class="row movie-categories">
-    {{#each movie-categories}}
-        <span>{{this}}/</span>
-    {{/each}}
-    </p>    
+    <h4 class="row movie-title">{{title}}</h4>  
     <div class="row details-block">
-        <div class="col m6 movie-img"></div>
-        <div class="col m1"></div>
-        <div class="col m5 movie-description">{{description}}</div>
+        <div class="col m6 movie-img">
+            <img src="https://image.tmdb.org/t/p/w200{{poster_path}}">
+        </div>
+        <div class="col m6 movie-overview">
+            <p class="row movie-categories">
+                <div class="genre-div">
+                    {{#each genre_ids}}
+                        <span>{{this}}/</span>
+                    {{/each}}
+                </div>
+            </p>  
+            {{overview}}</div>
     </div>
+    <button class="deleteMovie" data-movieId="{{id}}"><i class="fas fa-trash"></i></button>
 </li>
 
 
-
-{{!-- format of json passed to this handlebar:
-    {
-        original_title: "movie_A",
-        movie-categories: ["action", "drama"],
-        imgLink: "/somelink.jpg",
-        description: "this movie tells a story........."
-    }
---}}
