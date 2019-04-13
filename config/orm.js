@@ -28,6 +28,13 @@ var orm = {
             }
         })
     },
+    getAllLists: function(cb){
+        var queryStr = "SELECT list_name FROM atlas_db.watchlists";
+        connection.query(queryStr, function(err, result){
+            if (err) throw err;
+            cb(result);
+        });
+    },
 
     createList: function(listName, userId, cb){
         var queryStr = "INSERT INTO atlas_db.watchlists (list_name, userId) VALUE (?, ?)";
@@ -51,5 +58,7 @@ var orm = {
             cb(result);
         })
     }
-}
+};
+
+module.exports = orm;
 

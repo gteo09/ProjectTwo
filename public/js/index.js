@@ -229,7 +229,7 @@ var handleFormSubmit = function(event) {
 //   });
 // };
 
-<<<<<<< HEAD
+
 var displaySrcResults = function(){
   event.preventDefault();
   var filter = $("#search-dropdown").val();
@@ -418,11 +418,10 @@ var parseTvArr = function(arr){
 // Add event listeners to the submit and delete buttons
  $submitBtn.on("click", handleFormSubmit, displaySrcResults);
 //$exampleList.on("click", ".delete", handleDeleteBtnClick); */
-=======
-<<<<<<< HEAD
+
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
-=======
+
 var displaySrcResults = function(){
   event.preventDefault();
 
