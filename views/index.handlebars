@@ -27,7 +27,11 @@
           <h4 id="div-header"></h4>
           <section class="col l12" id="resultscatcher">
             <!-- here -->
-            <div id="ex1" class="modal">
+            
+
+            {{!-- <div id="image"></div> --}}
+          </section>
+          <div id="ex1" class="modal">
               <p>Add to: </p>
               <ul>
                 {{#each list_min}}
@@ -35,9 +39,6 @@
                 {{/each}}
               </ul>
             </div>
-
-            <div id="image"></div>
-          </section>
           </div>
 
 
@@ -53,20 +54,7 @@
 
 <script src="/js/index.js"></script>
 <script>
-  $("#create_list").on("click", function(event){
-    event.preventDefault();
-    $.ajax("/api", {
-      type: "POST",
-      data: {
-        listName: $("#newListNameInput").val(),
-        cover_img: "https://image.tmdb.org/t/p/w200/pKGGzotqkNDEL2ix4VU1bWmteK5.jpg"
-      }
-    }).then(
-      function(){
-        location.reload(true);
-      })
-  });
-
+  
   $(".addtocat").on("click", function(event){
     event.preventDefault();
     $.ajax("/api", {

@@ -206,6 +206,7 @@ var handleDeleteBtnClick = function() {
 };
 
 var displaySrcResults = function(){
+  $("#resultscatcher").empty();
   event.preventDefault();
   var filter = $("#search-dropdown").val();
   var query = $("#example-text").val();
