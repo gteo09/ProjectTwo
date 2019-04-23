@@ -4,7 +4,7 @@
               <div class="col l2 spacer"></div>
               <div class="col l5">
                 <form>
-                  <input id="newListNameInput" type="text" name="newListName">
+                  <input id="newListNameInput" type="text" name="newListName" placeholder="Type in your new list name here">
                 </form>
               </div>
               <div class="col l3">
@@ -26,3 +26,20 @@
           </ul>
           
         </div>
+
+<script>
+  $("#create_list").on("click", function(event){
+    event.preventDefault();
+    $.ajax("/api", {
+      type: "POST",
+      data: {
+        listName: $("#newListNameInput").val(),
+        cover_img: "https://image.tmdb.org/t/p/w200/pKGGzotqkNDEL2ix4VU1bWmteK5.jpg"
+      }
+    }).then(
+      function(){
+        location.reload(true);
+      })
+  });
+
+</script>
