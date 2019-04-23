@@ -12,4 +12,5 @@ var user = {
            cb(result);
        })
     },
-};
+
+}

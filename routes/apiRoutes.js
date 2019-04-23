@@ -5,12 +5,9 @@ require("dotenv").config();
 
 module.exports = function(app) {
   /* app.get("/api/search", function(req, res) {
-
     var key = process.env.apikey;
     var query = req._parsedOriginalUrl.query;
-
     var url = "https://api.themoviedb.org/3/search/movie?api_key=" + key + "&language=en-US&query=" + query + "&page=1&include_adult=false";
-
     axios.get(url)
       .then(function(response) {
         console.log("AXIOS results of TMDB query '" + query + "': ", response.data.results);

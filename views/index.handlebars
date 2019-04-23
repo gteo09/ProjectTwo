@@ -1,28 +1,27 @@
-
-        <!-- -->        
+<!-- -->        
         <div class="input-field col s4" class="text-center" >
           <select id="search-dropdown">
-            <option value="" disabled selected>Choose a search option</option>
+            <option value="" disabled selected>Choose your option</option>
             <option value="1">Titles</option>
+
             <option value="2">Actors</option>
-            <option value="3">Years</option>
-            <option value="4">Television</option>
+            <option value="3">Years (up to)</option>
+            <option value="4">Years (since)</option>
+            <option value="5">Television</option>
           </select>
         </div>
         <!-- -->
         <div class="row">
           <form class="col l9">
-            <div action="/api/search"> 
-              <div class="form-group input-field col l8">
-                <label for="example-text"></label>
-                <input type="text" name="input" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter search term">
-              </div>
-              <div class="form-group col l3">
-                <button id="search-database" class="btn btn-primary">Submit</button>
-              </div>
-          </form>
-        </div>
 
+
+        <form class="clearfix mb-4" action="/api/search"> 
+          <div class="form-group">
+            <label for="example-text">Enter a keyword to search the movie database</label>
+            <input type="text" name="input" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Keyword search">
+          </div>
+          <button id="submit" class="btn btn-primary">Submit</button>
+        </form>
         <div class="row selections">
           <h4 id="div-header"></h4>
           <section class="col l12" id="resultscatcher">
@@ -66,17 +65,12 @@
         location.reload(true);
       })
   });
-
   $(".addtocat").on("click", function(event){
     event.preventDefault();
     $.ajax("/api", {
       type: "GET"
     }).then(
-
     )
-
   });
   
-
-
 </script>

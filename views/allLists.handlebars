@@ -26,3 +26,19 @@
           </ul>
           
         </div>
+<script>
+ $("#create_list").on("click", function(event){
+   event.preventDefault();
+   $.ajax("/api", {
+     type: "POST",
+     data: {
+       listName: $("#newListNameInput").val(),
+       cover_img: "https://image.tmdb.org/t/p/w200/pKGGzotqkNDEL2ix4VU1bWmteK5.jpg"
+     }
+   }).then(
+     function(){
+       location.reload(true);
+     })
+ });
+
+ </script>

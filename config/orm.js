@@ -38,6 +38,7 @@ var orm = {
             cb(result);
         });
     },
+
     getAllLists: function(cb){
         var queryStr = "SELECT * FROM atlas_db.watchlists";
         connection.query(queryStr, function(err, result){
@@ -76,7 +77,7 @@ var orm = {
         connection.query(queryStr, function(err, result){
             if (err) throw err;
             cb(result);
-        })
+        });
     }
 };
 

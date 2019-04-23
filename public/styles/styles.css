@@ -8,12 +8,6 @@ body {
 }
 
 
-.links {
-  background: #161d20;  /* bunker */;
-  /* padding-left: 40%; */
-  width: 100%;
-}
-
 .header {
   margin-top: 10px;
   margin-left: 20px;
@@ -33,10 +27,6 @@ h1, h4 {
 .login {
   margin-bottom: 20px;
   margin-left: 20px;
-}
-
-.modal-content {
-  background: #161d20;  /* bunker */
 }
 
 .movie-poster {
@@ -104,11 +94,7 @@ h1, h4 {
 .input-field {
   background-color: #254558; /* blue dianne */
   -webkit-text-fill-color: silver;
-}
-
-.read {
-  margin-right: 10px;
-  /* float: left; */
+  float: right;
 }
 
 #search-database {
