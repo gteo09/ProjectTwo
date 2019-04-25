@@ -1,6 +1,18 @@
 require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
+var mysql = require("mysql");
+
+if (process.env.JAWSDB_URL){
+  var connection
+  }
+
+var connection = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database "atlas_db"
+});
 
 var app = express();
 var PORT = process.env.PORT || 3000;
